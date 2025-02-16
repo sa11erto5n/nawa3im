@@ -816,7 +816,7 @@ msgstr "Découvrez les dernières tendances de la mode pour chaque occasion"
 
 #: frontend/templates/frontend/index.html:235
 msgid "Shop Now"
-msgstr "Faire un magasin maintenant"
+msgstr "Commande maintenant"
 
 #: frontend/templates/frontend/index.html:254
 msgid "Our Collections"
