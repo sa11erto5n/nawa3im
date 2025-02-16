@@ -61,11 +61,37 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(data => {
                     if (data.success) {
                         // Handle successful form submission with SweetAlert2
+                        const currentLanguage = document.documentElement.getAttribute("data-lang");
+                        const swalConfig = {
+                            en: {
+                                success: {
+                                    title: 'Success!',
+                                    text: 'Form submitted successfully!',
+                                    confirmButtonText: 'OK'
+                                },
+                                error: {
+                                    title: 'Error!',
+                                    text: 'An error occurred.',
+                                    confirmButtonText: 'OK'
+                                }
+                            },
+                            ar: {
+                                success: {
+                                    title: 'نجاح!',
+                                    text: 'تم إرسال النموذج بنجاح!',
+                                    confirmButtonText: 'موافق'
+                                },
+                                error: {
+                                    title: 'خطأ!',
+                                    text: 'حدث خطأ ما.',
+                                    confirmButtonText: 'موافق'
+                                }
+                            }
+                        };
+
                         Swal.fire({
                             icon: 'success',
-                            title: 'Success!',
-                            text: data.message || 'Form submitted successfully!',
-                            confirmButtonText: 'OK',
+                            ...swalConfig[currentLanguage].success
                         }).then(() => {
                             form.reset(); // Reset the form
 
@@ -99,18 +125,38 @@ document.addEventListener("DOMContentLoaded", function () {
     // Select all delete buttons or forms
     const deleteButtons = document.querySelectorAll(".delete-button");
 
+    const currentLanguage = document.documentElement.getAttribute("data-lang");
+    const deleteSwalConfig = {
+        en: {
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this item!',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            success: 'Deleted!',
+            error: 'Error!'
+        },
+        ar: {
+            title: 'هل أنت متأكد؟',
+            text: 'لن تتمكن من استعادة هذا العنصر!',
+            confirmButtonText: 'نعم، احذفه!',
+            cancelButtonText: 'لا، إلغاء!',
+            success: 'تم الحذف!',
+            error: 'خطأ!'
+        }
+    };
+
     deleteButtons.forEach(button => {
         button.addEventListener("click", function (e) {
             e.preventDefault(); // Prevent the default action
 
             // Confirm deletion with SweetAlert2
             Swal.fire({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this item!',
+                title: deleteSwalConfig[currentLanguage].title,
+                text: deleteSwalConfig[currentLanguage].text,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: deleteSwalConfig[currentLanguage].confirmButtonText,
+                cancelButtonText: deleteSwalConfig[currentLanguage].cancelButtonText,
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Send the deletion request via AJAX
@@ -127,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 // Show success message
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Deleted!',
+                                    title: deleteSwalConfig[currentLanguage].success,
                                     text: data.message,
                                     confirmButtonText: 'OK',
                                 }).then(() => {
@@ -138,8 +184,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                 // Show error message
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Error!',
-                                    text: data.message || 'An error occurred.',
+                                    title: deleteSwalConfig[currentLanguage].error,
+                                    text: data.message || deleteSwalConfig[currentLanguage].text,
                                     confirmButtonText: 'OK',
                                 });
                             }
@@ -148,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             console.error("Error:", error);
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Error!',
+                                title: deleteSwalConfig[currentLanguage].error,
                                 text: 'An unexpected error occurred.',
                                 confirmButtonText: 'OK',
                             });
