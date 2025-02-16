@@ -7,7 +7,7 @@ from django.views.generic import DetailView
 from frontend.models.order import Order
 from django.contrib.auth.decorators import login_required
 from dashboard.models.country import Commune
-from generic import *
+from .generic import *
 
 @login_required
 def List(request):
