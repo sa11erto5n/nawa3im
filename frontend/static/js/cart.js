@@ -4,8 +4,8 @@ langCode = document.documentElement.getAttribute('data-lang')
 document.addEventListener('DOMContentLoaded', function () {
     // Function to update the cart summary
     function updateCartSummary(shipping = 0) {
-        // Get all cart items
-        const cartItems = document.querySelectorAll('.row.g-2.align-items-center');
+        // Update selector to match browser version
+        const cartItems = document.querySelectorAll('.d-flex.align-items-center.justify-content-between.mb-3');
 
         let totalProducts = 0;
         let subtotal = 0;
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const quantityInputs = document.querySelectorAll('input[name="quantity"]');
     quantityInputs.forEach(input => {
         input.addEventListener('change', function () {
-            // Ensure quantity is >= 1
+            // Update quantity validation to match server version
             if (input.value < 1) {
-                input.value = 1; // Reset to 1 if the value is less than 1
+                input.value = 1;
             }
             updateCartSummary();
         });
@@ -58,10 +58,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add event listener for remove buttons
     document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
+            // Update to match server version
             const deleteUrl = this.dataset.deleteUrl;
             const csrfToken = this.dataset.csrfToken;
-            
+
             // Send AJAX request to remove item
             fetch(deleteUrl, {
                 method: 'POST',
@@ -70,33 +71,33 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Remove the item from the DOM
-                    this.closest('.container-fluid').remove();
-                    updateCartSummary();
-                }
-            })
-            .catch(error => console.error('Error:', error));
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Remove the item from the DOM
+                        this.closest('.container-fluid').remove();
+                        updateCartSummary();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         });
     });
 
     // Add this code to handle wilaya change
-    document.getElementById('wilaya').addEventListener('change', async function() {
+    document.getElementById('wilaya').addEventListener('change', async function () {
         const citySelect = document.getElementById('city');
         const wilayaCode = this.value;
-        
+
         if (wilayaCode) {
             try {
                 // Fetch cities from backend
                 const response = await fetch(`/dashboard/api/wilayas/${wilayaCode}/cities/`);
-                
+
                 if (!response.ok) {
                     throw new Error('Failed to fetch cities');
                 }
                 const cities = await response.json();
-                
+
                 // Add new city options
                 cities.forEach(city => {
                     const option = document.createElement('option');
@@ -112,12 +113,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Fetch shipping price for selected wilaya
                 const shippingResponse = await fetch(`/dashboard/shipping/getShippingPrice/${wilayaCode}/`);
-                
+
                 if (!shippingResponse.ok) {
                     throw new Error('Failed to fetch shipping price');
                 }
                 const shippingData = await shippingResponse.json();
-                const price = shippingData.price && !isNaN(parseFloat(shippingData.price)) ? 
+                const price = shippingData.price && !isNaN(parseFloat(shippingData.price)) ?
                     parseFloat(shippingData.price) : 0;
                 // Update shipping price element
                 document.getElementById('shipping_price').textContent = `${price.toFixed(2)} DZD`;
