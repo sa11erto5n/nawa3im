@@ -45,7 +45,7 @@ class Command(BaseCommand):
             try:
                 wilaya_obj = wilaya.objects.get(code=c_data['wilaya_id'])
                 c_obj, created = Commune.objects.get_or_create(
-                    code=c_data['code'],
+                    post_code=c_data['post_code'],
                     name_fr=c_data['name'],
                     name_ar=c_data['ar_name'],
                     wilaya=wilaya_obj
@@ -55,7 +55,7 @@ class Command(BaseCommand):
                     commune_created += 1
                 else:
                     commune_existing += 1
-                    self.stdout.write(f"Commune already exists: {c_data['code']} - {c_data['name']}")
+                    self.stdout.write(f"Commune already exists: {c_data['id']} - {c_data['name']}")
                     
             except wilaya.DoesNotExist:
                 self.stdout.write(self.style.ERROR(f"Wilaya not found for commune: {c_data['code']} - {c_data['name']}"))
