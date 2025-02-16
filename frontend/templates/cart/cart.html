@@ -138,11 +138,9 @@
                                             {% trans "Wilaya:" %}
                                         </label>
                                         <select class="form-select" id="wilaya" name="wilaya" required>
-                                            <option value="">
-                                                {% trans "Select a wilaya" %}
-                                            </option>
+                                            <option value="">{% trans "Select a wilaya" %}</option>
                                             {% for wilaya in wilayas %}
-                                                <option value="{{ wilaya.code }}">
+                                                <option value="{{ wilaya.code }}" data-cities='{{ wilaya.cities|to_json }}'>
                                                     {{ wilaya|trans:'name' }}
                                                 </option>
                                             {% endfor %}
@@ -150,10 +148,10 @@
                                     </div>
                                     <!-- City -->
                                     <div class="mb-3">
-                                        <label for="city" class="form-label">
-                                            {% trans "City:" %}
-                                        </label>
-                                        <input type="text" class="form-control" id="city" name="city" required />
+                                        <label for="city" class="form-label">{% trans "City:" %}</label>
+                                        <select class="form-control" id="city" name="city" required>
+                                            <option value="">{% trans "Select a city" %}</option>
+                                        </select>
                                     </div>
                                     <!-- Country -->
                                     <div class="mb-3">
