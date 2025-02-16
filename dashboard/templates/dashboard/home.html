@@ -1,0 +1,164 @@
+{% extends "dashboard/index.html" %}
+
+{% load static i18n %}
+
+{% block subtitle %}
+    {% trans "Home" %}
+{% endblock subtitle %}
+
+{% block dashtitle %}
+    {% trans "Home" %}
+{% endblock dashtitle %}
+
+{% block dash %}
+    <div class="container-fluid">
+        <div class="row gx-2 mb-2">
+            <!-- Card 1: Total Orders -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="card bg-primary text-white rounded shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">
+                                    {% trans "Total Orders" %}
+                                </h5>
+                                <p class="card-text fs-4">
+                                    {{ orders.count }}
+                                </p>
+                            </div>
+                            <div>
+                                <i class="fa fa-shopping-cart fs-2"></i> <!-- FontAwesome v4 icon -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Total Categories -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="card bg-teal text-white rounded shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">
+                                    {% trans "Total Categories" %}
+                                </h5>
+                                <p class="card-text fs-4">
+                                    {{ categories.count }}
+                                </p>
+                            </div>
+                            <div>
+                                <i class="fa fa-folder fs-2"></i> <!-- FontAwesome v4 icon -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Total Products -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="card bg-success text-white rounded shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">
+                                    {% trans "Total Products" %}
+                                </h5>
+                                <p class="card-text fs-4">
+                                    {{ products.count }}
+                                </p>
+                            </div>
+                            <div>
+                                <i class="fa fa-cubes fs-2"></i> <!-- FontAwesome v4 icon -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Orders Section -->
+        <div class="row">
+            {% if orders %}
+                <h3 class="fs-bold text-teal">
+                    {% trans "Orders" %}
+                </h3>
+                <div class="table-responsive">
+                    <table class="table table-stripped table-hover table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th>
+                                    {% trans "Order ID" %}
+                                </th>
+                                <th>
+                                    {% trans "Order Total" %}
+                                </th>
+                                <th>
+                                    {% trans "Status" %}
+                                </th>
+                                <th>
+                                    {% trans "Payment Method" %}
+                                </th>
+                                <th>
+                                    {% trans "Created At" %}
+                                </th>
+                                <th>
+                                    {% trans "Actions" %}
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders|slice:":3" %}
+                                <tr>
+                                    <td>
+                                        {{ order.id }}
+                                    </td>
+                                    <td>
+                                        {{ order.total_price }} {% trans "DZD" %}
+                                    </td>
+                                    <td>
+                                        {% if order.status == 'Pending' %}
+                                            <button class='btn btn-sm btn-warning w-100'>
+                                                {{ order.get_status_display }}
+                                            </button>
+                                        {% else %}
+                                            <button class='btn btn-sm btn-success w-100'>
+                                                {{ order.get_status_display }}
+                                            </button>
+
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {{ order.payment_method }}
+                                    </td>
+                                    <td>
+                                        {{ order.created_at|date:"Y-m-d H:i" }}
+                                    </td>
+                                    <td>
+                                        {% if order.status == 'Pending' %}
+                                            <a class='btn btn-sm btn-success w-100 approveBtn'
+                                               data-url="{% url "dash:shipOrder" order.id %}">
+                                                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+                                                {% trans "approve" %}
+                                            </a>
+                                        {% else %}
+                                            ----
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="d-flex align-items-center justify-content-center">
+                    <p class='m-0 fs-5'>
+                        {% trans "No orders found" %}
+                    </p>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock dash %}

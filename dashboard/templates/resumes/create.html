@@ -1,0 +1,36 @@
+{% extends "dashboard/index.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block dashtitle %}
+    Add a new resume
+{% endblock dashtitle %}
+
+{% block dash %}
+    <form method="POST"
+          enctype="multipart/form-data"
+          action="{% url 'dash:create-resume' %}"
+          class='d-flex flex-column w-75'>
+        {% csrf_token %}
+
+        <div class="d-flex align-items-center mb-3">
+        </div>
+        <label for="url">
+            Resume URL
+        </label>
+        <input type="text" id="url" name="url" class='form-control' required />
+
+        <button type="submit" class='btn btn-sm btn-warning my-3 ms-auto '>
+            Submit
+        </button>
+
+    </form>
+
+{% endblock dash %}
+
+{% block extra_js %}
+    <script src="js/resume.js"></script>
+{% endblock extra_js %}

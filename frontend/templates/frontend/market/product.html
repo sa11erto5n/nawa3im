@@ -1,0 +1,70 @@
+{% extends "frontend/index.html" %}
+
+{% load static i18n tags %}
+
+{% block subtitle %}
+    {{ product|trans:"name" }}
+{% endblock subtitle %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/market.css" %}" />
+{% endblock extra_css %}
+
+{% block slider %}
+{% endblock slider %}
+
+{% block content %}
+    <section class="furniture_section long_section category_section"
+             id='furniture'>
+        {% if product %}
+            <div class="container my-3">
+                <div class="row g-3">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="bg-light p-2 rounded">
+                            <img src="{{ product.image.url }}"
+                                 alt="{{ product|trans:"name" }}"
+                                 class='rounded w-100' 
+                                 style="mix-blend-mode:multiply"
+                                 />
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12">
+                        <div class="bg-light p-2 rounded">
+                            <div class="detail-box">
+                                <h3 class='mb-2 text-teal'>
+                                    {{ product|trans:"name" }}
+                                </h3>
+                                <div class="price_box d-flex ">
+                                    <div class="d-flex flex-column w-100">
+                                        <strong>{% trans "Product Details" %}</strong>
+                                        <p>
+                                            {{ product|trans:"description"|safe }}
+                                        </p>
+                                        <div class="d-flex justify-content-between">
+                                            <button class="btn w-100 btn-teal add-to-cart" data-product-id="{{ product.pk }}">
+                                                {% trans "Add to cart" %}
+                                            </button>        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+
+{% endblock content %}
+
+
+{% block footer %}
+{% endblock footer %}
+
+{% block extra_js %}
+    <script src="{% static "js/market.js" %}"></script>
+{% endblock extra_js %}
+
+{% block js %}
+{% endblock js %}

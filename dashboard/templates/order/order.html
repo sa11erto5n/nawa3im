@@ -1,0 +1,90 @@
+{% extends "dashboard/index.html" %}
+
+{% load static i18n %}
+
+{% block dashtitle %}
+    {% trans "Orders" %}
+{% endblock dashtitle %}
+
+{% block dash %}
+    {% if orders %}
+        <div class="table-responsive">
+            <table class="table table-stripped table-hover table-bordered bg-white">
+                <thead>
+                    <tr>
+                        <th>
+                            {% trans "Order ID" %}
+                        </th>
+                        <th>
+                            {% trans "Order Total" %}
+                        </th>
+                        <th>
+                            {% trans "Status" %}
+                        </th>
+                        <th>
+                            {% trans "Payment Method" %}
+                        </th>
+                        <th>
+                            {% trans "Created At" %}
+                        </th>
+                        <th>
+                            {% trans "Actions" %}
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>
+                                {{ order.id }}
+                            </td>
+                            <td>
+                                {{ order.total_price }} {% trans "DZD" %}
+                            </td>
+                            <td>
+                                {% if order.status == 'Pending' %}
+                                    <button class='btn btn-sm btn-warning w-100'>
+                                        {{ order.get_status_display }}
+                                    </button>
+                                {% else %}
+                                    <button class='btn btn-sm btn-success w-100'>
+                                        {{ order.get_status_display }}
+                                    </button>
+
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ order.payment_method }}
+                            </td>
+                            <td>
+                                {{ order.created_at|date:"Y-m-d H:i" }}
+                            </td>
+                            <td>
+                                {% if order.status == 'Pending' %}
+                                    <a class='btn btn-sm btn-success w-100 approveBtn'
+                                       data-url="{% url "dash:shipOrder" order.id %}">
+                                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+                                        {% trans "approve" %}
+                                    </a>
+                                    {% else %}
+                                    ----
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="d-flex align-items-center justify-content-center">
+            <p class='m-0 fs-5'>
+                {% trans "No orders found" %}
+            </p>
+        </div>
+    {% endif %}
+{% endblock dash %}
+
+{% block js %}
+    <script src="{% static "js/order.js" %}"></script>
+{% endblock js %}

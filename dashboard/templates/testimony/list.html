@@ -1,0 +1,126 @@
+{% extends "dashboard/index.html" %}
+
+{% load static i18n tags %}
+
+{% block dashtitle %}
+    {% trans "Create a Testimony" %}
+{% endblock dashtitle %}
+
+{% block dash %}
+    <div class="d-flex flex-column">
+        <div class="errorList">
+        </div>
+        <form action="{% url 'dash:testimony-create' %}"
+              class="d-flex flex-column form"
+              method="post">
+            {% csrf_token %}
+            <div class="d-flex align-items-start">
+                {% comment %} Image upload {% endcomment %}
+                <div class='m-2'>
+                    <label for="id_thumbnail" class='mb-2'>
+                        {% trans "Image" %}
+                    </label>
+                    <div id="thumbnail_container"
+                         onclick="document.getElementById('id_thumbnail').click()">
+                        <i class="uil uil-upload-alt"></i>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        <img id="thumbnail_preview"
+                             src="https://placehold.co/600x400?text=1:1"
+                             alt="Image Preview" />
+                    </div>
+                    <input type="file"
+                           id="id_thumbnail"
+                           name="thumbnail"
+                           accept="image/*"
+                           onchange="previewImage(event)" />
+                </div>
+                <div class="d-flex flex-column flex-grow-1">
+                    <input type="text"
+                           name="name_ar"
+                           id="name_ar"
+                           class="form-control mb-3"
+                           placeholder="{% trans "the Arabic Full name" %}" />
+                    <input type="text"
+                           name="name_fr"
+                           id="name_fr"
+                           class="form-control mb-3"
+                           placeholder="{% trans "the French Full name" %}" />
+                    <textarea name="description_ar"
+                              id="description_fr"
+                              class="form-control mb-3"
+                              placeholder="{% trans "Arabic Testimony" %}"
+                              rows="7"></textarea>
+                    <textarea name="description_fr"
+                              id="description_fr"
+                              class="form-control mb-3"
+                              placeholder="{% trans "French Testimony" %}"
+                              rows="7"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="d-block  ms-auto  btn btn-teal">
+                {% trans "Create" %}
+            </button>
+        </form>
+        <div class="d-flex flex-column bg-white p-2 mt-3 rounded">
+            <h3 class="text-teal fw-bold">
+                {% trans "Testemonies" %}
+            </h3>
+            {% if testimonies %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    {% trans "Image" %}
+                                </th>
+                                <th scope="col">
+                                    {% trans "Name" %}
+                                </th>
+                                <th scope="col">
+                                    {% trans "Content" %}
+                                </th>
+                                <th scope="col">
+                                    {% trans "Creation Date" %}
+                                </th>
+                                <th scope="col">
+                                    {% trans "Actions" %}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for object in testimonies %}
+                                <tr>
+                                    <td>
+                                        <img src={{ object.image.url }} width='48' height='48' class='rounded' />
+                                    </td>
+                                    <td>
+                                        {{ object|trans:'fullname' }}
+                                    </td>
+                                    <td>
+                                        {{ object|trans:'content' }}
+                                    </td>
+                                    <td>
+                                        {{ object.created_at }}
+                                    </td>
+                                    <td>
+                                        <button class="delete-button btn btn-sm btn-danger"
+                                                data-delete-url="{% url 'dash:testimony-delete' object.pk %}"
+                                                data-csrf-token="{{ csrf_token }}">
+                                            {% trans "Delete" %}
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <h5 class="text-center">
+                    {% trans "No testimonies at the moment" %}
+                </h5>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock dash %}

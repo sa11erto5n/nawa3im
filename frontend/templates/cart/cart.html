@@ -1,0 +1,196 @@
+{% extends "frontend/index.html" %}
+
+{% load static i18n tags %}
+
+{% block subtitle %}
+    {% trans "Shopping Cart" %}
+{% endblock subtitle %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/market.css" %}" />
+{% endblock extra_css %}
+
+{% block slider %}
+{% endblock slider %}
+
+{% block content %}
+    <div class="long_section my-2">
+        <div class="container-fluid">
+            <div class="row g-3">
+                <div class="col-lg-6 col-md-12">
+                    <!-- Cart Items Section -->
+                    <div class="card mb-4 bg-light rounded">
+                        <div class="card-body">
+                            <h2 class="card-title text-teal">
+                                {% trans "Cart Summary" %}
+                            </h2>
+                            {% if cart_items %}
+                                {% for item in cart_items %}
+                                    <div class="container-fluid">
+                                        <div class="row g-2 align-items-center">
+                                            <!-- Product Name -->
+                                            <span class="col-lg-3 col-md-12 fs-5"
+                                                  style="white-space:nowrap;
+                                                         overflow: hidden;
+                                                         text-overflow: ellipsis">
+                                                {{ item.product| }}
+                                            </span>
+
+                                            <!-- Product Price -->
+                                            <span class="col-lg-3 col-md-12 item_price fw-bold">
+                                                {{ item.product.price }} {% trans "DZD" %}
+                                            </span>
+
+                                            <!-- Quantity and Remove Button -->
+                                            <div class="col-lg-6">
+                                                <div class="row">
+                                                    <!-- Quantity Input -->
+                                                    <div class="col-lg-6">
+                                                        <input type="number"
+                                                               name="quantity"
+                                                               id="quantity"
+                                                               value="{{ item.quantity }}"
+                                                               class="form-control mb-2" />
+                                                    </div>
+
+                                                    <!-- Remove Button -->
+                                                    <div class="col-lg-6">
+                                                        <button type="button"
+                                                                class="btn btn-danger ms-2 delete-button"
+                                                                data-delete-url="{% url 'frontend:remove_from_cart' item.pk %}"
+                                                                data-csrf-token="{{ csrf_token }}"
+                                                                aria-label="Remove Item">
+                                                            {% trans "Remove" %}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-muted">
+                                    {% trans "Your cart is empty." %}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="d-flex flex-column">
+                        <!-- Order Summary Section -->
+                        <div class="card mb-4 bg-light rounded">
+                            <div class="card-body">
+                                <h2 class="card-title text-teal">
+                                    {% trans "Order Summary" %}
+                                </h2>
+                                <div class="summary-details">
+                                    <!-- Total Number of Products -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-muted">{% trans "Total Products:" %}</span>
+                                        <span id='products_count'>5</span> <!-- Replace with dynamic value -->
+                                    </div>
+                                    <!-- Subtotal -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-muted">{% trans "Subtotal:" %}</span>
+                                        <span id='subtotal_count'>0 {% trans "DZD" %}</span> <!-- Replace with dynamic value -->
+                                    </div>
+                                    <!-- Shipping Cost -->
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-muted">{% trans "Shipping:" %}</span>
+                                        <span id='shipping_price'>0 {% trans "DZD" %}</span> <!-- Replace with dynamic value -->
+                                    </div>
+                                    <!-- Total Amount -->
+                                    <div class="d-flex justify-content-between mt-3 pt-3 border-top">
+                                        <strong>{% trans "Total Amount:" %}</strong>
+                                        <strong id='total_amount'>0 {% trans "DZD" %} </strong> <!-- Replace with dynamic value -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Section -->
+                        <form class="card bg-light form"
+                              method="post"
+                              action="{% url 'frontend:save_shipping_details' %}">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <h2 class="card-title text-teal">
+                                    {% trans "Shipping Details" %}
+                                </h2>
+                                <div class="errorList">
+                                </div>
+                                <form action="#" method="post">
+                                    <!-- Full Name -->
+                                    <div class="mb-3">
+                                        <label for="full-name" class="form-label">
+                                            {% trans "Full Name:" %}
+                                        </label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="full-name"
+                                               name="full-name"
+                                               required />
+                                    </div>
+                                    <!-- wilaya -->
+                                    <div class="mb-3">
+                                        <label for="wilaya" class="form-label">
+                                            {% trans "Wilaya:" %}
+                                        </label>
+                                        <select class="form-select" id="wilaya" name="wilaya" required>
+                                            <option value="">
+                                                {% trans "Select a wilaya" %}
+                                            </option>
+                                            {% for wilaya in wilayas %}
+                                                <option value="{{ wilaya.code }}">
+                                                    {{ wilaya|trans:'name' }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <!-- City -->
+                                    <div class="mb-3">
+                                        <label for="city" class="form-label">
+                                            {% trans "City:" %}
+                                        </label>
+                                        <input type="text" class="form-control" id="city" name="city" required />
+                                    </div>
+                                    <!-- Country -->
+                                    <div class="mb-3">
+                                        <label for="country" class="form-label">
+                                            {% trans "Country:" %}
+                                        </label>
+                                        <select class="form-select" id="country" name="country" required>
+                                            <option selected value="dz">
+                                                {% trans "Algeria" %}
+                                            </option>
+                                            <!-- Add more countries as needed -->
+                                        </select>
+                                    </div>
+                                    <!-- Submit Button -->
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-teal btn-sm">
+                                            {% trans "Save Order" %}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block extra_js %}
+    <script src="{% static "js/cart.js" %}"></script>
+{% endblock extra_js %}
+
+{% block js %}
+{% endblock js %}

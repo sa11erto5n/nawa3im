@@ -1,0 +1,130 @@
+{% extends "dashboard/index.html" %}
+
+{% load static i18n tags %}
+
+{% block dashtitle %}
+     {% trans "Product List" %}
+{% endblock dashtitle %}
+
+{% block dash %}
+     {% if categories %}
+          <!-- a form to create a new product -->
+          <form action="{% url 'dash:create-product' %}"
+                method="post"
+                class='form d-flex flex-column align-items-start'>
+               {% csrf_token %}
+               <div class="errorList">
+               </div>
+               <div class="d-flex align-items-start w-100">
+                    <div class='m-2'>
+                         <label for="id_thumbnail" class='mb-2'>
+                              {% trans "Product Image" %}
+                         </label>
+                         <div id="thumbnail_container"
+                              onclick="document.getElementById('id_thumbnail').click()">
+                              <i class="uil uil-upload-alt"></i>
+                              <i class="fa fa-upload" aria-hidden="true"></i>
+                              <img id="thumbnail_preview"
+                                   src="https://placehold.co/600x400?text=1:1"
+                                   alt="Image Preview" />
+                         </div>
+                         <input type="file"
+                                id="id_thumbnail"
+                                name="thumbnail"
+                                accept="image/*"
+                                onchange="previewImage(event)" />
+                    </div>
+                    <div class="d-flex flex-column my-2 flex-grow-1">
+
+                         <div class="form-floating mb-3">
+                              <input type="text"
+                                     class="form-control"
+                                     id="name_ar"
+                                     name="name_ar"
+                                     placeholder="Arabic Name" />
+                              <label for="name_ar">
+                                   {% trans "Product Name (AR)" %}
+                              </label>
+                         </div>
+                         <div class="form-floating mb-3">
+                              <input type="text"
+                                     class="form-control"
+                                     id="name_fr"
+                                     name="name_fr"
+                                     placeholder="French Name" />
+                              <label for="name_fr">
+                                   {% trans "Product Name (FR)" %}
+                              </label>
+                         </div>
+                         <div class="form-floating mb-3">
+                              <select class="form-select" id="category" name="category" required>
+                                   {% for category in categories %}
+                                        <option value="{{ category.id }}">
+                                             {{ category|trans:'name' }}
+                                        </option>
+                                   {% endfor %}
+                              </select>
+                              <label for="floatingSelect">
+                                   Category
+                              </label>
+                         </div>
+                         <div class="form-floating mb-3">
+                              <input type="number"
+                                     class="form-control"
+                                     id="stock"
+                                     name="stock"
+                                     step="1"
+                                     value="0"
+                                     required />
+                              <label for="stock">
+                                   {% trans "Product Stock" %}
+                              </label>
+                         </div>
+                         <div class="form-floating mb-3">
+                              <input type="number"
+                                     class="form-control"
+                                     id="price"
+                                     name="price"
+                                     step="0.01"
+                                     value="0"
+                                     required />
+                              <label for="price">
+                                   {% trans "Product Price" %}
+                              </label>
+                         </div>
+
+                         <div class="form-floating mt-3">
+                              <textarea class="tiny-text-area form-control"
+                                        placeholder="Product Description (AR)"
+                                        id="description_ar"
+                                        name="description_ar"
+                                        required
+                                        style="height: 120px"></textarea>
+                              <label for="description_ar">
+                                   {% trans "Product Description (AR)" %}
+                              </label>
+                         </div>
+                         <div class="form-floating mt-3">
+                              <textarea class="form-control tiny-text-area"
+                                        placeholder="Product Description (FR)"
+                                        id="description_fr"
+                                        name="description_fr"
+                                        required
+                                        style="height: 120px"></textarea>
+                              <label for="description_fr">
+                                   {% trans "Product Description (FR)" %}
+                              </label>
+                              <button type="submit" class='btn btn-sm btn-teal d-block ms-auto mt-3'>
+                                   {% trans "Create" %}
+                              </button>
+                         </div>
+                    </div>
+
+               </div>
+          </form>
+     {% else %}
+          <h5 class="text-center">
+               {% trans "No Categories at the moment" %}
+          </h5>
+     {% endif %}
+{% endblock dash %}

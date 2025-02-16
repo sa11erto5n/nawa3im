@@ -1,0 +1,145 @@
+{% extends "dashboard/index.html" %}
+
+{% load static i18n tags %}
+
+{% block dashtitle %}
+    {% trans "Blog Management" %}
+{% endblock dashtitle %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/blog.css" %}" />
+{% endblock extra_css %}
+
+{% block dash %}
+    <div class="d-flex flex-column">
+        <div class="errorList">
+        </div>
+        <form action="{% url 'dash:blog-create' %}"
+              class="d-flex flex-column form"
+              method="post"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="d-flex align-items-start">
+                <div class='m-2'>
+                    <label for="id_thumbnail" class='mb-2'>
+                        {% trans "Image" %}
+                    </label>
+                    <div id="thumbnail_container"
+                         onclick="document.getElementById('id_thumbnail').click()">
+                        <i class="uil uil-upload-alt"></i>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        <img id="thumbnail_preview"
+                             src="https://placehold.co/600x400?text=1:1"
+                             alt="Image Preview" />
+                    </div>
+                    <input type="file"
+                           id="id_thumbnail"
+                           name="thumbnail"
+                           accept="image/*"
+                           onchange="previewImage(event)" />
+                </div>
+                <div>
+                    <label for="title_fr">
+                        {% trans "French Title" %}
+                    </label>
+                    <input type="text"
+                           name="title_fr"
+                           id="title_fr"
+                           class="form-control"
+                           required />
+
+                    <label for="title_ar">
+                        {% trans "Arabic Title" %}
+                    </label>
+                    <input type="text"
+                           name="title_ar"
+                           id="title_ar"
+                           class="form-control"
+                           required />
+
+                    <label for="content_fr">
+                        {% trans "French Content" %}
+                    </label>
+                    <textarea name="content_fr"
+                              id="content_fr"
+                              class="form-control tiny-text-area"
+                              required></textarea>
+
+                    <label for="content_ar">
+                        {% trans "Arabic Content" %}
+                    </label>
+                    <textarea name="content_ar"
+                              id="content_ar"
+                              class="form-control tiny-text-area"
+                              required></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="d-block ms-auto btn btn-teal mt-3">
+                {% trans "Create Blog" %}
+            </button>
+        </form>
+
+        <div class="d-flex flex-column bg-white p-2 mt-3 rounded">
+            <h3 class="text-teal fw-bold">
+                {% trans "Blog Posts" %}
+            </h3>
+            {% if blogs %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    {% trans "Image" %}
+                                </th>
+                                <th scope="col">
+                                    {% trans "French Title" %}
+                                </th>
+                                <th scope="col">
+                                    {% trans "Arabic Title" %}
+                                </th>
+                                <th scope="col">
+                                    {% trans "Creation Date" %}
+                                </th>
+                                <th scope="col">
+                                    {% trans "Actions" %}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for blog in blogs %}
+                                <tr>
+                                    <td>
+                                        <img src="{{ blog.image.url }}"
+                                             alt="{{ blog.title_fr }}"
+                                             style="max-width: 100px" />
+                                    </td>
+                                    <td>
+                                        {{ blog.title_fr }}
+                                    </td>
+                                    <td>
+                                        {{ blog.title_ar }}
+                                    </td>
+                                    <td>
+                                        {{ blog.created_at }}
+                                    </td>
+                                    <td>
+                                        <button class="delete-button btn btn-sm btn-danger"
+                                                data-delete-url="{% url 'dash:blog-delete' blog.pk %}"
+                                                data-csrf-token="{{ csrf_token }}">
+                                            {% trans "Delete" %}
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <h5 class="text-center">
+                    {% trans "No Blog Posts at the moment" %}
+                </h5>
+            {% endif %}
+        </div>
+    </div>
+{% endblock dash %}
