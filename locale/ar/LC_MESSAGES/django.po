@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-16 20:07+0000\n"
+"POT-Creation-Date: 2025-02-16 20:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,38 +60,28 @@ msgid "Image"
 msgstr "صورة"
 
 #: dashboard/templates/blog/list.html:43 dashboard/templates/blog/list.html:96
-#, fuzzy
-#| msgid "French"
 msgid "French Title"
-msgstr "فرنسي"
+msgstr "اللقب الفرنسي"
 
 #: dashboard/templates/blog/list.html:52 dashboard/templates/blog/list.html:99
-#, fuzzy
-#| msgid "Arabic"
 msgid "Arabic Title"
-msgstr "عربي"
+msgstr "اللقب العربي"
 
 #: dashboard/templates/blog/list.html:61
-#, fuzzy
-#| msgid "Content"
 msgid "French Content"
-msgstr "محتوى"
+msgstr "المحتوى الفرنسي"
 
 #: dashboard/templates/blog/list.html:69
-#, fuzzy
-#| msgid "Content"
 msgid "Arabic Content"
-msgstr "محتوى"
+msgstr "المحتوى العربي"
 
 #: dashboard/templates/blog/list.html:79
-#, fuzzy
-#| msgid "Create"
 msgid "Create Blog"
-msgstr "يخلق"
+msgstr "إنشاء مدونة"
 
 #: dashboard/templates/blog/list.html:85
 msgid "Blog Posts"
-msgstr "المقالات"
+msgstr "منشورات المدونة"
 
 #: dashboard/templates/blog/list.html:102
 #: dashboard/templates/categories/list.html:84
@@ -118,14 +108,12 @@ msgid "Delete"
 msgstr "يمسح"
 
 #: dashboard/templates/blog/list.html:140
-#, fuzzy
-#| msgid "No products at the moment"
 msgid "No Blog Posts at the moment"
-msgstr "لا توجد مقالات في الوقت الحالي"
+msgstr "لا توجد منشورات مدونة في الوقت الحالي"
 
 #: dashboard/templates/categories/list.html:6
 msgid "Create a category"
-msgstr "إنشاء تصنيف"
+msgstr "إنشاء فئة"
 
 #: dashboard/templates/categories/list.html:43
 msgid "Category Name (Arabic)"
@@ -152,7 +140,7 @@ msgstr "يخلق"
 
 #: dashboard/templates/categories/list.html:67
 msgid "Categories List"
-msgstr "قائمة التصنيفات"
+msgstr "قائمة الفئات"
 
 #: dashboard/templates/categories/list.html:78
 #: dashboard/templates/order/details.html:13
@@ -168,7 +156,7 @@ msgstr "وصف"
 #: dashboard/templates/products/create.html:127
 #: dashboard/templates/shipping/list.html:90
 msgid "No Categories at the moment"
-msgstr "لا توجد تصنيفات في الوقت الحالي"
+msgstr "لا توجد فئات في الوقت الحالي"
 
 #: dashboard/templates/dashboard/home.html:6
 #: dashboard/templates/dashboard/home.html:10 frontend/models/order.py:39
@@ -261,7 +249,7 @@ msgstr "شيبينغز"
 #: dashboard/templates/dashboard/index.html:55
 #: dashboard/templates/testimony/list.html:67
 msgid "Testemonies"
-msgstr "الشهادات"
+msgstr "شهادات"
 
 #: dashboard/templates/dashboard/index.html:59
 msgid "Blogs"
@@ -296,7 +284,7 @@ msgstr "إجمالي السعر"
 #: dashboard/templates/shipping/list.html:43
 #: frontend/templates/cart/cart.html:119
 msgid "Shipping Details"
-msgstr "تفاصيل التوصيل"
+msgstr "تفاصيل الشحن"
 
 #: dashboard/templates/order/details.html:14
 msgid "Phone"
@@ -320,15 +308,13 @@ msgid "Price"
 msgstr "سعر"
 
 #: dashboard/templates/order/order.html:74
-#, fuzzy
-#| msgid "View Details"
 msgid "Details"
-msgstr "عرض التفاصيل"
+msgstr "تفاصيل"
 
 #: dashboard/templates/products/create.html:6
 #: dashboard/templates/products/list.html:7
 msgid "Product List"
-msgstr "قائمة المنتجات"
+msgstr "قائمة المنتج"
 
 #: dashboard/templates/products/create.html:21
 msgid "Product Image"
@@ -371,7 +357,7 @@ msgstr "مخزون"
 #: frontend/templates/frontend/market/category.html:68
 #: frontend/templates/frontend/market/home.html:78
 msgid "No products at the moment"
-msgstr "لا توجد منتجات متاحة حالياً"
+msgstr "لا توجد منتجات في الوقت الحالي"
 
 #: dashboard/templates/shipping/list.html:22
 #: dashboard/templates/shipping/list.html:54
@@ -392,14 +378,10 @@ msgid "Create a Testimony"
 msgstr "إنشاء شهادة"
 
 #: dashboard/templates/testimony/list.html:43
-#, fuzzy
-#| msgid "Arabic Fullname"
 msgid "the Arabic Full name"
 msgstr "الاسم العربي الكامل"
 
 #: dashboard/templates/testimony/list.html:48
-#, fuzzy
-#| msgid "French Fullname"
 msgid "the French Full name"
 msgstr "الاسم الكامل الفرنسي"
 
@@ -417,7 +399,7 @@ msgstr "محتوى"
 
 #: dashboard/templates/testimony/list.html:120
 msgid "No testimonies at the moment"
-msgstr "لا توجد شهادات متاحة حالياً"
+msgstr "لا توجد شهادات في الوقت الحالي"
 
 #: dashboard/templates/user/edit.html:21
 msgid "Profile Picture"
@@ -468,34 +450,24 @@ msgid "Image is required."
 msgstr "الصورة مطلوبة."
 
 #: dashboard/views/blog.py:24
-#, fuzzy
-#| msgid "Arabic name is required."
 msgid "Arabic title is required."
-msgstr "الاسم العربي مطلوب."
+msgstr "اللقب العربي مطلوب."
 
 #: dashboard/views/blog.py:26
-#, fuzzy
-#| msgid "French name is required."
 msgid "French title is required."
-msgstr "الاسم الفرنسي مطلوب."
+msgstr "العنوان الفرنسي مطلوب."
 
 #: dashboard/views/blog.py:28
-#, fuzzy
-#| msgid "Arabic name is required."
 msgid "Arabic content is required."
-msgstr "الاسم العربي مطلوب."
+msgstr "المحتوى العربي مطلوب."
 
 #: dashboard/views/blog.py:30
-#, fuzzy
-#| msgid "French name is required."
 msgid "French content is required."
-msgstr "الاسم الفرنسي مطلوب."
+msgstr "المحتوى الفرنسي مطلوب."
 
 #: dashboard/views/blog.py:46
-#, fuzzy
-#| msgid "Product created successfully!"
 msgid "Blog created successfully!"
-msgstr "تم إنشاء المنتج بنجاح!"
+msgstr "تم إنشاء المدونة بنجاح!"
 
 #: dashboard/views/blog.py:50 dashboard/views/categories.py:42
 #: dashboard/views/shipping.py:41 dashboard/views/testimony.py:50
@@ -511,10 +483,8 @@ msgid "Description is required."
 msgstr "الوصف مطلوب."
 
 #: dashboard/views/categories.py:40
-#, fuzzy
-#| msgid "Product created successfully!"
 msgid "Category created successfully!"
-msgstr "تم إنشاء المنتج بنجاح!"
+msgstr "فئة تم إنشاؤها بنجاح!"
 
 #: dashboard/views/generic.py:40
 msgid "Item has been deleted"
@@ -533,10 +503,8 @@ msgid "Invalid request method!"
 msgstr "طريقة طلب غير صالح!"
 
 #: dashboard/views/orders.py:53
-#, fuzzy
-#| msgid "Order shipped successfully!"
 msgid "Order status updated successfully!"
-msgstr "تم شحن الطلب بنجاح!"
+msgstr "تم تحديث حالة الطلب بنجاح!"
 
 #: dashboard/views/orders.py:57
 msgid "Invalid status provided!"
@@ -571,10 +539,8 @@ msgid "Shipping created successfully!"
 msgstr "تم إنشاء الشحن بنجاح!"
 
 #: dashboard/views/shipping.py:54
-#, fuzzy
-#| msgid "Shipping Price"
 msgid "Shipping price not found"
-msgstr "سعر الشحن"
+msgstr "لم يتم العثور على سعر الشحن"
 
 #: dashboard/views/testimony.py:24
 msgid "Arabic name is required."
@@ -661,16 +627,12 @@ msgid "Full Name"
 msgstr "الاسم الكامل"
 
 #: frontend/models/order.py:33
-#, fuzzy
-#| msgid "Wilaya:"
 msgid "Wilaya"
-msgstr "ويلايا:"
+msgstr "فيلايا"
 
 #: frontend/models/order.py:36
-#, fuzzy
-#| msgid "Shipping Details"
 msgid "Shipping Location"
-msgstr "تفاصيل الشحن"
+msgstr "موقع الشحن"
 
 #: frontend/models/order.py:40 frontend/templates/cart/cart.html:181
 msgid "Office"
@@ -717,10 +679,8 @@ msgid "Full Name:"
 msgstr "الاسم الكامل:"
 
 #: frontend/templates/cart/cart.html:138
-#, fuzzy
-#| msgid "Phone Number"
 msgid "Phone Number:"
-msgstr "رقم التليفون"
+msgstr "رقم التليفون:"
 
 #: frontend/templates/cart/cart.html:151
 msgid "Wilaya:"
@@ -735,20 +695,16 @@ msgid "City:"
 msgstr "مدينة:"
 
 #: frontend/templates/cart/cart.html:166
-#, fuzzy
-#| msgid "Select a wilaya"
 msgid "Select a city"
-msgstr "حدد Wilaya"
+msgstr "حدد مدينة"
 
 #: frontend/templates/cart/cart.html:171
 msgid "Ship to:"
 msgstr "سافر على متن سفينة لِـ:"
 
 #: frontend/templates/cart/cart.html:175
-#, fuzzy
-#| msgid "Home"
 msgid "My Home"
-msgstr "بيت"
+msgstr "بيتي"
 
 #: frontend/templates/cart/cart.html:188
 msgid "Save Order"
@@ -834,10 +790,8 @@ msgid "Discover the latest trends in fashion for every occasion"
 msgstr "اكتشف أحدث الاتجاهات في الموضة في كل مناسبة"
 
 #: frontend/templates/frontend/index.html:232
-#, fuzzy
-#| msgid "Order Total"
 msgid "Order it now"
-msgstr "إجمالي الطلب"
+msgstr "اطلبها الآن"
 
 #: frontend/templates/frontend/index.html:251
 msgid "Our Collections"
@@ -936,32 +890,25 @@ msgid "Please enter a search term."
 msgstr "الرجاء إدخال مصطلح البحث."
 
 #: frontend/views/cart/cart.py:52
-#, fuzzy, python-brace-format
-#| msgid "{quantity} x {product.name} added to cart."
+#, python-brace-format
 msgid "{quantity} x {product_name} added to cart."
-msgstr "{Quantity} x {product.name} تمت إضافته إلى العربة."
+msgstr "{Quantity} x {product_name} تمت إضافته إلى العربة."
 
 #: frontend/views/cart/cart.py:128
-#, fuzzy
-#| msgid "Your cart is empty."
 msgid "Your cart is empty!"
-msgstr "عربة التسوق الخاصة بك فارغة."
+msgstr "عربتك فارغة!"
 
 #: frontend/views/cart/cart.py:172
-#, fuzzy
-#| msgid "Product created successfully!"
 msgid "Order created successfully!"
-msgstr "تم إنشاء المنتج بنجاح!"
+msgstr "تم إنشاؤه بنجاح!"
 
 #: frontend/views/cart/shipping.py:30
 msgid "Please fill out all shipping details."
 msgstr "يرجى ملء جميع تفاصيل الشحن."
 
 #: frontend/views/cart/shipping.py:61
-#, fuzzy
-#| msgid "Save Order"
 msgid "New Order"
-msgstr "حفظ الطلب"
+msgstr "أمر جديد"
 
 #: frontend/views/cart/shipping.py:62
 #, python-format
@@ -975,56 +922,3 @@ msgstr "تفاصيل الشحن المحفوظة بنجاح."
 #: frontend/views/cart/shipping.py:73
 msgid "Failed to save shipping details {str(e)}"
 msgstr "فشل في حفظ تفاصيل الشحن {str (e)}"
-
-#~ msgid "Contact Us"
-#~ msgstr "اتصل بنا"
-
-#~ msgid "Shop Now"
-#~ msgstr "تسوق الآن"
-
-#~ msgid "Country:"
-#~ msgstr "دولة:"
-
-#~ msgid "Algeria"
-#~ msgstr "الجزائر"
-
-#~ msgid "Women's Wear"
-#~ msgstr "ارتداء النساء"
-
-#~ msgid "Men's Wear"
-#~ msgstr "ارتداء الرجال"
-
-#~ msgid "Accessories"
-#~ msgstr "مُكَمِّلات"
-
-#~ msgid "Spring Fashion Trends"
-#~ msgstr "اتجاهات أزياء الربيع"
-
-#~ msgid "Discover the must-have pieces for this season"
-#~ msgstr "اكتشف القطع التي يجب أن تكون لهذا الموسم"
-
-#~ msgid "Summer Fashion Trends"
-#~ msgstr "اتجاهات الموضة الصيفية"
-
-#~ msgid "What's hot and what's not for summer fashion"
-#~ msgstr "ما هو الساخن وما ليس للأزياء الصيفية"
-
-#~ msgid "Fall Fashion Trends"
-#~ msgstr "اتجاهات الموضة السقوط"
-
-#~ msgid "What to expect in the upcoming fall fashion season"
-#~ msgstr "ما يمكن توقعه في موسم أزياء الخريف القادم"
-
-#~ msgid ""
-#~ "It is a long established fact that a reader will be distracted by the "
-#~ "readable content of a page when looking at its layout."
-#~ msgstr ""
-#~ "إنها حقيقة راسخة أن القارئ سوف يصرف انتباهه عن طريق المحتوى القابل للقراءة "
-#~ "لصفحة عند النظر إلى تخطيطه."
-
-#~ msgid ""
-#~ "Amazing service and high quality products. I'm very satisfied with my "
-#~ "purchase and will definitely recommend to others!"
-#~ msgstr ""
-#~ "خدمة مذهلة ومنتجات عالية الجودة.أنا راضٍ جدًا عن عملية الشراء الخاصة بي "
-#~ "وسأوصي بالتأكيد بالآخرين!"
