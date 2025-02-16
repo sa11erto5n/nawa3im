@@ -9,6 +9,8 @@ from frontend.models.customer import Customer
 from dashboard.models.product import Product
 from dashboard.models.country import wilaya
 import uuid
+from frontend.models.order import Order, OrderItem
+from django.db import transaction
 
 def get_or_create_cart(request):
     """
@@ -94,11 +96,85 @@ def view_cart(request):
     Display the contents of the cart.
     """
     cart = get_or_create_cart(request)
-    cart_items = cart.items.all()  # Get all items in the cart
+    cart_items = cart.items.all().select_related('product')  # Optimize with select_related
+    
+    # Calculate totals
+    subtotal = sum(item.product.price * item.quantity for item in cart_items)
+    shipping_price = 0  # Will be calculated based on wilaya
+    total = subtotal + shipping_price
 
     context = {
         'cart': cart,
         'cart_items': cart_items,
         'wilayas': wilaya.objects.all(),
+        'subtotal': subtotal,
+        'shipping_price': shipping_price,
+        'total': total,
     }
     return render(request, 'cart/cart.html', context)
+
+@require_POST
+@transaction.atomic
+def create_order(request):
+    """
+    Create an order from the cart contents.
+    """
+    cart = get_or_create_cart(request)
+    cart_items = cart.items.all()
+    
+    if not cart_items.exists():
+        return JsonResponse({
+            'success': False,
+            'error': _('Your cart is empty!')
+        })
+
+    # Get shipping details from POST data
+    shipping_data = {
+        'full_name': request.POST.get('full-name'),
+        'phone_number': request.POST.get('phone'),
+        'wilaya_id': request.POST.get('wilaya'),
+        'city': request.POST.get('city'),
+        'shipping_location': request.POST.get('shipping_location', 'home'),
+    }
+
+    # Create the order
+    try:
+        # For authenticated users, get the customer
+        if request.user.is_authenticated:
+            customer = Customer.objects.get(user=request.user)
+        else:
+            customer = Customer.objects.get(session_id=request.session.session_key)
+
+        # Calculate total price
+        total_price = sum(item.product.price * item.quantity for item in cart_items)
+
+        # Create order
+        order = Order.objects.create(
+            customer=customer,
+            total_price=total_price,
+            **shipping_data
+        )
+
+        # Create order items
+        for cart_item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product=cart_item.product,
+                quantity=cart_item.quantity,
+                price=cart_item.product.price
+            )
+
+        # Clear the cart
+        cart.items.all().delete()
+
+        return JsonResponse({
+            'success': True,
+            'message': _('Order created successfully!'),
+            'order_id': order.id
+        })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        })

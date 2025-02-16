@@ -38,7 +38,17 @@ def create(request):
             shipping.save()
             return JsonResponse({'success': True, 'message': _('Shipping created successfully!'),'redirect_url': reverse_lazy('dash:shippingList')})
     else:
-        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
+        return JsonResponse({'success': False, 'errors': _('Invalid request method')}, status=405)
 class Delete(mixins.AdminOnlyMixin,BaseDeleteView):
     model = Shipping
 
+
+
+def getShippingPrice(request,wilaya_id):
+    try:
+        chosen_wilaya = wilaya.objects.get(id=wilaya_id)
+        shipping_price = Shipping.objects.get(wilaya=chosen_wilaya).price
+        print(shipping_price)
+        return JsonResponse({'price': shipping_price})
+    except Shipping.DoesNotExist:
+        return JsonResponse({'error': _('Shipping price not found')})

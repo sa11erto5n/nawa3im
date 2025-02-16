@@ -1,6 +1,5 @@
-
 from django.urls import path,include
-from .views import auth, customer, dashbaord, notifications, user, products, categories,orders, shipping, testimony, blog
+from .views import auth, customer, dashbaord, notifications, user, products, categories,orders, shipping, testimony, blog, country
 app_name = 'dash'
 
 urlpatterns = [
@@ -23,6 +22,7 @@ urlpatterns = [
     path('shipping/',shipping.List,name='shippingList'),
     path('shipping/create/',shipping.create,name='shipping-create'),
     path('shipping/delete/<int:pk>/',shipping.Delete.as_view(),name='shipping-delete'),
+    path('shipping/getShippingPrice/<int:wilaya_id>/', shipping.getShippingPrice, name='get-shipping-price'),
     # testimony
     path('testimony/',testimony.testimony_list,name='testimonyList'),
     path('testimony/create/',testimony.create,name='testimony-create'),
@@ -35,6 +35,9 @@ urlpatterns = [
     # orders 
     path('orders/',orders.List,name='orderList'),
     path('orders/status/<int:pk>/',orders.ShipOrder,name='shipOrder'),
+    # country
+    path('api/wilayas/<int:wilaya_code>/cities/', country.get_cities, name='get_cities'),
+    
 
 
 ]

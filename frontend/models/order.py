@@ -29,8 +29,19 @@ class Order(models.Model):
 
     # Shipping Details
     full_name = models.CharField(_("Full Name"), max_length=100)
-    wilaya = models.OneToOneField(country.wilaya, on_delete=models.DO_NOTHING, verbose_name=_("City"))
-    country = models.CharField(_("Country"), max_length=50)
+    phone_number = models.CharField(_("Phone Number"), max_length=10)
+    wilaya = models.ForeignKey(country.wilaya, on_delete=models.DO_NOTHING, verbose_name=_("Wilaya"))
+    city = models.CharField(_("City"), max_length=100)
+    shipping_location = models.CharField(
+        _("Shipping Location"),
+        max_length=10,
+        choices=[
+            ('home', _("Home")),
+            ('office', _("Office")),
+        ],
+        default='home'
+    )
+    country = models.CharField(_("Country"), max_length=50, default="Algeria")
 
     def __str__(self):
         return f"{_('Order')} #{self.id} - {self.customer}"

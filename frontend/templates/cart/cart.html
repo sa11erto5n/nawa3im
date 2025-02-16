@@ -132,6 +132,19 @@
                                                name="full-name"
                                                required />
                                     </div>
+                                    <!-- Phone Number -->
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">
+                                            {% trans "Phone Number:" %}
+                                        </label>
+                                        <input type="tel"
+                                               class="form-control"
+                                               id="phone"
+                                               name="phone"
+                                               pattern="[0]{1}[5-7]{1}[0-9]{8}"
+                                               placeholder="05XXXXXXXX"
+                                               required />
+                                    </div>
                                     <!-- wilaya -->
                                     <div class="mb-3">
                                         <label for="wilaya" class="form-label">
@@ -140,7 +153,7 @@
                                         <select class="form-select" id="wilaya" name="wilaya" required>
                                             <option value="">{% trans "Select a wilaya" %}</option>
                                             {% for wilaya in wilayas %}
-                                                <option value="{{ wilaya.code }}" data-cities='{{ wilaya.cities|to_json }}'>
+                                                <option value="{{ wilaya.code }}">
                                                     {{ wilaya|trans:'name' }}
                                                 </option>
                                             {% endfor %}
@@ -153,17 +166,21 @@
                                             <option value="">{% trans "Select a city" %}</option>
                                         </select>
                                     </div>
-                                    <!-- Country -->
+                                    <!-- Shipping Location -->
                                     <div class="mb-3">
-                                        <label for="country" class="form-label">
-                                            {% trans "Country:" %}
-                                        </label>
-                                        <select class="form-select" id="country" name="country" required>
-                                            <option selected value="dz">
-                                                {% trans "Algeria" %}
-                                            </option>
-                                            <!-- Add more countries as needed -->
-                                        </select>
+                                        <label class="form-label">{% trans "Ship to:" %}</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="shipping_location" id="home" value="home" checked>
+                                            <label class="form-check-label" for="home">
+                                                {% trans "My Home" %}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="shipping_location" id="office" value="office">
+                                            <label class="form-check-label" for="office">
+                                                {% trans "Office" %}
+                                            </label>
+                                        </div>
                                     </div>
                                     <!-- Submit Button -->
                                     <div class="d-grid">
