@@ -221,7 +221,7 @@
 {% endblock footer %}
 
 {% block extra_js %}
-    <script src="{% static 'js/cart_v1.js' %}"></script>
+    <script src="{% static 'js/cart_v1.js' %}?v={% now 'U' %}"></script>
 {% endblock extra_js %}
 
 {% block js %}
