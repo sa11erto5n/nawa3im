@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-16 17:18+0000\n"
+"POT-Creation-Date: 2025-02-16 20:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Category"
 msgstr "فئة"
 
-#: dashboard/models/product.py:21 frontend/models/cart.py:27
-#: frontend/models/order.py:54
+#: dashboard/models/product.py:21 dashboard/templates/order/details.html:21
+#: frontend/models/cart.py:27 frontend/models/order.py:54
 msgid "Product"
 msgstr "منتج"
 
@@ -155,6 +155,7 @@ msgid "Categories List"
 msgstr "قائمة التصنيفات"
 
 #: dashboard/templates/categories/list.html:78
+#: dashboard/templates/order/details.html:13
 #: dashboard/templates/testimony/list.html:78
 msgid "Name"
 msgstr "اسم"
@@ -205,6 +206,7 @@ msgid "Order Total"
 msgstr "إجمالي الطلب"
 
 #: dashboard/templates/dashboard/home.html:97
+#: dashboard/templates/order/details.html:8
 #: dashboard/templates/order/order.html:22 frontend/models/order.py:18
 msgid "Status"
 msgstr "حالة"
@@ -215,6 +217,7 @@ msgid "Payment Method"
 msgstr "طريقة الدفع"
 
 #: dashboard/templates/dashboard/home.html:103
+#: dashboard/templates/order/details.html:10
 #: dashboard/templates/order/order.html:28 frontend/models/cart.py:10
 #: frontend/models/order.py:14
 msgid "Created At"
@@ -226,7 +229,7 @@ msgstr "تم إنشاؤها في"
 #: dashboard/templates/shipping/list.html:71
 #: frontend/templates/cart/cart.html:41 frontend/templates/cart/cart.html:96
 #: frontend/templates/cart/cart.html:101 frontend/templates/cart/cart.html:106
-#: frontend/templates/frontend/index.html:304
+#: frontend/templates/frontend/index.html:301
 #: frontend/templates/frontend/market/category.html:56
 #: frontend/templates/frontend/market/home.html:64
 msgid "DZD"
@@ -238,7 +241,7 @@ msgid "approve"
 msgstr "يعتمد"
 
 #: dashboard/templates/dashboard/home.html:157
-#: dashboard/templates/order/order.html:82
+#: dashboard/templates/order/order.html:86
 msgid "No orders found"
 msgstr "لم يتم العثور على أوامر"
 
@@ -279,6 +282,48 @@ msgstr "حساب تعريفي"
 #: dashboard/templates/dashboard/index.html:135
 msgid "Logout"
 msgstr "تسجيل الخروج"
+
+#: dashboard/templates/order/details.html:7 frontend/models/order.py:51
+msgid "Order"
+msgstr "طلب"
+
+#: dashboard/templates/order/details.html:9 frontend/models/order.py:16
+msgid "Total Price"
+msgstr "إجمالي السعر"
+
+#: dashboard/templates/order/details.html:12
+#: dashboard/templates/shipping/list.html:6
+#: dashboard/templates/shipping/list.html:43
+#: frontend/templates/cart/cart.html:119
+msgid "Shipping Details"
+msgstr "تفاصيل التوصيل"
+
+#: dashboard/templates/order/details.html:14
+msgid "Phone"
+msgstr "هاتف"
+
+#: dashboard/templates/order/details.html:15 frontend/models/customer.py:13
+msgid "Address"
+msgstr "عنوان"
+
+#: dashboard/templates/order/details.html:17
+msgid "Items"
+msgstr "أغراض"
+
+#: dashboard/templates/order/details.html:22 frontend/models/cart.py:29
+#: frontend/models/order.py:56
+msgid "Quantity"
+msgstr "كمية"
+
+#: dashboard/templates/order/details.html:23 frontend/models/order.py:57
+msgid "Price"
+msgstr "سعر"
+
+#: dashboard/templates/order/order.html:74
+#, fuzzy
+#| msgid "View Details"
+msgid "Details"
+msgstr "عرض التفاصيل"
 
 #: dashboard/templates/products/create.html:6
 #: dashboard/templates/products/list.html:7
@@ -327,12 +372,6 @@ msgstr "مخزون"
 #: frontend/templates/frontend/market/home.html:78
 msgid "No products at the moment"
 msgstr "لا توجد منتجات متاحة حالياً"
-
-#: dashboard/templates/shipping/list.html:6
-#: dashboard/templates/shipping/list.html:43
-#: frontend/templates/cart/cart.html:119
-msgid "Shipping Details"
-msgstr "تفاصيل التوصيل"
 
 #: dashboard/templates/shipping/list.html:22
 #: dashboard/templates/shipping/list.html:54
@@ -458,8 +497,8 @@ msgstr "الاسم الفرنسي مطلوب."
 msgid "Blog created successfully!"
 msgstr "تم إنشاء المنتج بنجاح!"
 
-#: dashboard/views/blog.py:50 dashboard/views/shipping.py:41
-#: dashboard/views/testimony.py:50
+#: dashboard/views/blog.py:50 dashboard/views/categories.py:42
+#: dashboard/views/shipping.py:41 dashboard/views/testimony.py:50
 msgid "Invalid request method"
 msgstr "طريقة طلب غير صالح"
 
@@ -471,29 +510,35 @@ msgstr "الاسم مطلوب."
 msgid "Description is required."
 msgstr "الوصف مطلوب."
 
+#: dashboard/views/categories.py:40
+#, fuzzy
+#| msgid "Product created successfully!"
+msgid "Category created successfully!"
+msgstr "تم إنشاء المنتج بنجاح!"
+
 #: dashboard/views/generic.py:40
 msgid "Item has been deleted"
 msgstr "تم حذف العنصر"
 
-#: dashboard/views/orders.py:22
+#: dashboard/views/orders.py:30
 msgid "Order shipped successfully!"
 msgstr "تم شحن الطلب بنجاح!"
 
-#: dashboard/views/orders.py:26
+#: dashboard/views/orders.py:34
 msgid "Order cannot be shipped from its current status!"
 msgstr "لا يمكن شحن الطلب من وضعه الحالي!"
 
-#: dashboard/views/orders.py:30 dashboard/views/orders.py:52
+#: dashboard/views/orders.py:38 dashboard/views/orders.py:61
 msgid "Invalid request method!"
 msgstr "طريقة طلب غير صالح!"
 
-#: dashboard/views/orders.py:44
+#: dashboard/views/orders.py:53
 #, fuzzy
 #| msgid "Order shipped successfully!"
 msgid "Order status updated successfully!"
 msgstr "تم شحن الطلب بنجاح!"
 
-#: dashboard/views/orders.py:48
+#: dashboard/views/orders.py:57
 msgid "Invalid status provided!"
 msgstr "حالة غير صالحة!"
 
@@ -571,10 +616,6 @@ msgstr "عميل"
 msgid "Cart"
 msgstr "عربة"
 
-#: frontend/models/cart.py:29 frontend/models/order.py:56
-msgid "Quantity"
-msgstr "كمية"
-
 #: frontend/models/customer.py:7
 msgid "User"
 msgstr "مستخدم"
@@ -587,10 +628,6 @@ msgstr "معرف الجلسة"
 msgid "Phone Number"
 msgstr "رقم التليفون"
 
-#: frontend/models/customer.py:13
-msgid "Address"
-msgstr "عنوان"
-
 #: frontend/models/customer.py:15 frontend/models/order.py:44
 msgid "Country"
 msgstr "دولة"
@@ -598,10 +635,6 @@ msgstr "دولة"
 #: frontend/models/order.py:15
 msgid "Updated At"
 msgstr "تحديث في"
-
-#: frontend/models/order.py:16
-msgid "Total Price"
-msgstr "إجمالي السعر"
 
 #: frontend/models/order.py:21
 msgid "Pending"
@@ -642,14 +675,6 @@ msgstr "تفاصيل الشحن"
 #: frontend/models/order.py:40 frontend/templates/cart/cart.html:181
 msgid "Office"
 msgstr "مكتب"
-
-#: frontend/models/order.py:51
-msgid "Order"
-msgstr "طلب"
-
-#: frontend/models/order.py:57
-msgid "Price"
-msgstr "سعر"
 
 #: frontend/templates/cart/cart.html:6
 msgid "Shopping Cart"
@@ -739,7 +764,7 @@ msgstr "عمروي محمد"
 
 #: frontend/templates/frontend/index.html:22
 #: frontend/templates/frontend/index.html:75
-#: frontend/templates/frontend/index.html:483
+#: frontend/templates/frontend/index.html:480
 msgid "Nawa3im"
 msgstr "Nawa3im"
 
@@ -765,7 +790,7 @@ msgid "Collections"
 msgstr "مجموعات"
 
 #: frontend/templates/frontend/index.html:155
-#: frontend/templates/frontend/index.html:286
+#: frontend/templates/frontend/index.html:283
 msgid "New Arrivals"
 msgstr "الوافدين الجدد"
 
@@ -774,7 +799,7 @@ msgid "About"
 msgstr "عن"
 
 #: frontend/templates/frontend/index.html:161
-#: frontend/templates/frontend/index.html:343
+#: frontend/templates/frontend/index.html:340
 msgid "Fashion Insights"
 msgstr "رؤى الموضة"
 
@@ -782,66 +807,64 @@ msgstr "رؤى الموضة"
 msgid "Testimonials"
 msgstr "شهادات"
 
-#: frontend/templates/frontend/index.html:167
-msgid "Contact Us"
-msgstr "اتصل بنا"
-
-#: frontend/templates/frontend/index.html:175
+#: frontend/templates/frontend/index.html:172
 msgid "French"
 msgstr "فرنسي"
 
-#: frontend/templates/frontend/index.html:178
+#: frontend/templates/frontend/index.html:175
 msgid "Arabic"
 msgstr "عربي"
 
-#: frontend/templates/frontend/index.html:197
+#: frontend/templates/frontend/index.html:194
 msgid "Trendsetting Fashion"
 msgstr "الموضة في الاتجاه"
 
-#: frontend/templates/frontend/index.html:200
+#: frontend/templates/frontend/index.html:197
 msgid ""
 "Elevate your style with our curated collection of modern and timeless "
 "fashion pieces."
 msgstr "ارفع أسلوبك من خلال مجموعتنا المنسقة من قطع الأزياء الحديثة والخالدة."
 
-#: frontend/templates/frontend/index.html:225
+#: frontend/templates/frontend/index.html:222
 msgid "Elevate Your Style"
 msgstr "رفع أسلوبك"
 
-#: frontend/templates/frontend/index.html:228
+#: frontend/templates/frontend/index.html:225
 msgid "Discover the latest trends in fashion for every occasion"
 msgstr "اكتشف أحدث الاتجاهات في الموضة في كل مناسبة"
 
-#: frontend/templates/frontend/index.html:235
-msgid "Shop Now"
-msgstr "تسوق الآن"
+#: frontend/templates/frontend/index.html:232
+#, fuzzy
+#| msgid "Order Total"
+msgid "Order it now"
+msgstr "إجمالي الطلب"
 
-#: frontend/templates/frontend/index.html:254
+#: frontend/templates/frontend/index.html:251
 msgid "Our Collections"
 msgstr "مجموعاتنا"
 
-#: frontend/templates/frontend/index.html:257
+#: frontend/templates/frontend/index.html:254
 msgid "Explore our curated fashion selections"
 msgstr "استكشف اختيارات الأزياء المنسقة"
 
-#: frontend/templates/frontend/index.html:270
+#: frontend/templates/frontend/index.html:267
 msgid "Explore"
 msgstr "يستكشف"
 
-#: frontend/templates/frontend/index.html:289
+#: frontend/templates/frontend/index.html:286
 msgid "Discover our latest additions"
 msgstr "اكتشف أحدث إضافاتنا"
 
-#: frontend/templates/frontend/index.html:307
+#: frontend/templates/frontend/index.html:304
 #: frontend/templates/frontend/market/search_results.html:37
 msgid "View Details"
 msgstr "عرض التفاصيل"
 
-#: frontend/templates/frontend/index.html:327
+#: frontend/templates/frontend/index.html:324
 msgid "About Our Brand"
 msgstr "حول علامتنا التجارية"
 
-#: frontend/templates/frontend/index.html:330
+#: frontend/templates/frontend/index.html:327
 msgid ""
 "We are passionate about bringing you the latest in fashion trends while "
 "maintaining timeless elegance in every piece."
@@ -849,35 +872,35 @@ msgstr ""
 "نحن متحمسون لجلب أحدث اتجاهات الموضة مع الحفاظ على الأناقة الخالدة في كل "
 "قطعة."
 
-#: frontend/templates/frontend/index.html:332
+#: frontend/templates/frontend/index.html:329
 msgid "Learn More"
 msgstr "يتعلم أكثر"
 
-#: frontend/templates/frontend/index.html:346
+#: frontend/templates/frontend/index.html:343
 msgid "Stay updated with the latest trends"
 msgstr "ابق على اطلاع دائم بأحدث الاتجاهات"
 
-#: frontend/templates/frontend/index.html:358
+#: frontend/templates/frontend/index.html:355
 msgid "Read More"
 msgstr "اقرأ المزيد"
 
-#: frontend/templates/frontend/index.html:372
+#: frontend/templates/frontend/index.html:369
 msgid "What Our Customers Say"
 msgstr "ما يقوله عملائنا"
 
-#: frontend/templates/frontend/index.html:375
+#: frontend/templates/frontend/index.html:372
 msgid "Hear from our satisfied clients"
 msgstr "اسمع من عملائنا الراضين"
 
-#: frontend/templates/frontend/index.html:408
+#: frontend/templates/frontend/index.html:405
 msgid "Previous"
 msgstr "سابق"
 
-#: frontend/templates/frontend/index.html:415
+#: frontend/templates/frontend/index.html:412
 msgid "Next"
 msgstr "التالي"
 
-#: frontend/templates/frontend/index.html:481
+#: frontend/templates/frontend/index.html:478
 msgid "All Rights Reserved By"
 msgstr "جميع الحقوق محفوظة من قبل"
 
@@ -930,17 +953,34 @@ msgstr "عربة التسوق الخاصة بك فارغة."
 msgid "Order created successfully!"
 msgstr "تم إنشاء المنتج بنجاح!"
 
-#: frontend/views/cart/shipping.py:26
+#: frontend/views/cart/shipping.py:30
 msgid "Please fill out all shipping details."
 msgstr "يرجى ملء جميع تفاصيل الشحن."
 
-#: frontend/views/cart/shipping.py:58
+#: frontend/views/cart/shipping.py:61
+#, fuzzy
+#| msgid "Save Order"
+msgid "New Order"
+msgstr "حفظ الطلب"
+
+#: frontend/views/cart/shipping.py:62
+#, python-format
+msgid "Order #%(order_id)s has been placed."
+msgstr "تم وضع الطلب #٪ (order_id) s."
+
+#: frontend/views/cart/shipping.py:66
 msgid "Shipping details saved successfully."
 msgstr "تفاصيل الشحن المحفوظة بنجاح."
 
-#: frontend/views/cart/shipping.py:65
+#: frontend/views/cart/shipping.py:73
 msgid "Failed to save shipping details {str(e)}"
 msgstr "فشل في حفظ تفاصيل الشحن {str (e)}"
+
+#~ msgid "Contact Us"
+#~ msgstr "اتصل بنا"
+
+#~ msgid "Shop Now"
+#~ msgstr "تسوق الآن"
 
 #~ msgid "Country:"
 #~ msgstr "دولة:"
