@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to update the cart summary
     function updateCartSummary() {
         // Get all cart items
-        const cartItems = document.querySelectorAll('.d-flex.align-items-center.justify-content-between.mb-3');
+        const cartItems = document.querySelectorAll('.row.g-2.align-items-center');
 
         let totalProducts = 0;
         let subtotal = 0;
@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const quantityInput = item.querySelector('input[name="quantity"]');
             let quantity = parseInt(quantityInput.value);
 
-            // Ensure quantity is >= 0
-            if (quantity < 0) {
-                quantity = 0; // Reset to 0 if the value is negative
-                quantityInput.value = 0; // Update the input field
+            // Ensure quantity is >= 1
+            if (quantity < 1) {
+                quantity = 1; // Reset to 1 if the value is less than 1
+                quantityInput.value = 1; // Update the input field
             }
 
             const price = parseFloat(item.querySelector('.item_price').textContent
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Calculate shipping (example: 200 DZD for simplicity)
-        const shipping = 20;
+        const shipping = 200;
 
         // Calculate total amount
         const totalAmount = subtotal + shipping;
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const quantityInputs = document.querySelectorAll('input[name="quantity"]');
     quantityInputs.forEach(input => {
         input.addEventListener('change', function () {
-            // Ensure quantity is >= 0
-            if (input.value <= 0) {
-                input.value = 1; // Reset to 0 if the value is negative
+            // Ensure quantity is >= 1
+            if (input.value < 1) {
+                input.value = 1; // Reset to 1 if the value is less than 1
             }
             updateCartSummary();
         });
@@ -59,9 +59,26 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener for remove buttons
     document.querySelectorAll('.delete-button').forEach(button => {
         button.addEventListener('click', function() {
-            const productName = this.closest('.row').querySelector('.fs-5').textContent.trim();
-            // ... rest of the remove button logic ...
+            const deleteUrl = this.dataset.deleteUrl;
+            const csrfToken = this.dataset.csrfToken;
+            
+            // Send AJAX request to remove item
+            fetch(deleteUrl, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Remove the item from the DOM
+                    this.closest('.container-fluid').remove();
+                    updateCartSummary();
+                }
+            })
+            .catch(error => console.error('Error:', error));
         });
     });
-
 });
