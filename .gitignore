@@ -5,7 +5,7 @@
 *.pyc
 .env
 # Ignore all .png files
-# *.png
+*.png
 
 # Exclude user.png from being ignored
 !user-teal.png
