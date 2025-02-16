@@ -63,11 +63,11 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <a href="{% url 'dash:order-detail' order.pk %}"
-                                       class="btn btn-sm btn-primary mx-2">
+                                       class="btn btn-sm btn-primary ">
                                         {% trans "Details" %}
                                     </a>
                                     {% if order.status == 'Pending' %}
-                                        <a class='btn btn-sm btn-success w-100 approveBtn'
+                                        <a class='btn btn-sm btn-success w-100 approveBtn mx-2'
                                            data-url="{% url "dash:shipOrder" order.id %}">
                                             <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
                                             {% trans "approve" %}
@@ -75,10 +75,11 @@
 
                                     {% endif %}
 
-                                    <a href="{% url "dash:order-delete" order.pk %}"
-                                       class="btn btn-sm btn-danger">
+                                    <button class="delete-button btn btn-sm btn-danger"
+                                            data-delete-url="{% url 'dash:order-delete' order.pk %}"
+                                            data-csrf-token="{{ csrf_token }}">
                                         {% trans "Delete" %}
-                                    </a>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
