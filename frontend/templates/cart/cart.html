@@ -151,7 +151,9 @@
                                             {% trans "Wilaya:" %}
                                         </label>
                                         <select class="form-select" id="wilaya" name="wilaya" required>
-                                            <option value="">{% trans "Select a wilaya" %}</option>
+                                            <option value="">
+                                                {% trans "Select a wilaya" %}
+                                            </option>
                                             {% for wilaya in wilayas %}
                                                 <option value="{{ wilaya.code }}">
                                                     {{ wilaya|trans:'name' }}
@@ -161,22 +163,37 @@
                                     </div>
                                     <!-- City -->
                                     <div class="mb-3">
-                                        <label for="city" class="form-label">{% trans "City:" %}</label>
+                                        <label for="city" class="form-label">
+                                            {% trans "City:" %}
+                                        </label>
                                         <select class="form-control" id="city" name="city" required>
-                                            <option value="">{% trans "Select a city" %}</option>
+                                            <option value="">
+                                                {% trans "Select a city" %}
+                                            </option>
                                         </select>
                                     </div>
                                     <!-- Shipping Location -->
                                     <div class="mb-3">
-                                        <label class="form-label">{% trans "Ship to:" %}</label>
+                                        <label class="form-label">
+                                            {% trans "Ship to:" %}
+                                        </label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="shipping_location" id="home" value="home" checked>
+                                            <input class="form-check-input"
+                                                   type="radio"
+                                                   name="shipping_location"
+                                                   id="home"
+                                                   value="home"
+                                                   checked />
                                             <label class="form-check-label" for="home">
                                                 {% trans "My Home" %}
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="shipping_location" id="office" value="office">
+                                            <input class="form-check-input"
+                                                   type="radio"
+                                                   name="shipping_location"
+                                                   id="office"
+                                                   value="office" />
                                             <label class="form-check-label" for="office">
                                                 {% trans "Office" %}
                                             </label>
@@ -204,7 +221,7 @@
 {% endblock footer %}
 
 {% block extra_js %}
-    <script src="{% static "js/cart.js?v=1.0.1" %}"></script>
+    <script src="{% static 'js/cart.js?v=1.0.1' %}"></script>
 {% endblock extra_js %}
 
 {% block js %}
