@@ -63,7 +63,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <a href="{% url 'dash:order-detail' order.pk %}"
-                                       class="btn btn-sm btn-primary ">
+                                       class="btn btn-sm btn-primary mx-2">
                                         {% trans "Details" %}
                                     </a>
                                     {% if order.status == 'Pending' %}
@@ -75,7 +75,7 @@
 
                                     {% endif %}
 
-                                    <button class="delete-button btn btn-sm btn-danger"
+                                    <button class="delete-button btn btn-sm btn-danger mx-2"
                                             data-delete-url="{% url 'dash:order-delete' order.pk %}"
                                             data-csrf-token="{{ csrf_token }}">
                                         {% trans "Delete" %}
