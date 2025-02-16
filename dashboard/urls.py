@@ -36,6 +36,8 @@ urlpatterns = [
     path('orders/',orders.List,name='orderList'),
     path('orders/status/<int:pk>/',orders.ShipOrder,name='shipOrder'),
     path('order/<int:pk>/', orders.order_detail, name='order-detail'),
+    path('order/delete/<int:pk>/', orders.Delete.as_view(), name='order-delete'),
+    
     # country
     path('api/wilayas/<int:wilaya_code>/cities/', country.get_cities, name='get_cities'),
     

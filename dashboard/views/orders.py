@@ -7,7 +7,7 @@ from django.views.generic import DetailView
 from frontend.models.order import Order
 from django.contrib.auth.decorators import login_required
 from dashboard.models.country import Commune
-
+from generic import *
 
 @login_required
 def List(request):
@@ -74,3 +74,7 @@ def order_detail(request, pk):
         'commune':commune
     }
     return render(request, 'order/details.html', context=context)
+
+
+class Delete(mixins.AdminOnlyMixin,BaseDeleteView):
+    model = Order

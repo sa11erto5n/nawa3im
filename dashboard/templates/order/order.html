@@ -62,6 +62,10 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
+                                    <a href="{% url 'dash:order-detail' order.pk %}"
+                                       class="btn btn-sm btn-primary mx-2">
+                                        {% trans "Details" %}
+                                    </a>
                                     {% if order.status == 'Pending' %}
                                         <a class='btn btn-sm btn-success w-100 approveBtn'
                                            data-url="{% url "dash:shipOrder" order.id %}">
@@ -70,9 +74,10 @@
                                         </a>
 
                                     {% endif %}
-                                    <a href="{% url 'dash:order-detail' order.id %}"
-                                       class="btn btn-sm btn-primary mx-2">
-                                        {% trans "Details" %}
+
+                                    <a href="{% url "dash:order-delete" order.pk %}"
+                                       class="btn btn-sm btn-danger">
+                                        {% trans "Delete" %}
                                     </a>
                                 </div>
                             </td>
