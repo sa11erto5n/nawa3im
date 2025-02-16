@@ -3,7 +3,7 @@
 # Files
 *.sqlite3
 *.pyc
-# .env
+.env
 # Ignore all .png files
 # *.png
 
