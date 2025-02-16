@@ -182,7 +182,16 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Replace with the App Pass
 # Origins
 
 CSRF_TRUSTED_ORIGINS = ['https://nawa3im.m07amed.uk']
-
+# settings.py
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 3,  # Global cache timeout of 3 seconds
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        }
+    }
+}
 
 WILAYAS_JSON_PATH = os.path.join(BASE_DIR, 'dashboard/static/js/wilayas.json')
 COMMUNES_JSON_PATH = os.path.join(BASE_DIR, 'dashboard/static/js/communes.json')
