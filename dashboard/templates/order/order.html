@@ -67,9 +67,13 @@
                                         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
                                         {% trans "approve" %}
                                     </a>
-                                    {% else %}
-                                    ----
+
                                 {% endif %}
+                                <a href="{% url 'dash:order-detail' order.id %}"
+                                   class="btn btn-sm btn-primary">
+                                    {% trans "Details" %}
+                                </a>
+
                             </td>
                         </tr>
                     {% endfor %}

@@ -5,6 +5,10 @@ from django.views.decorators.http import require_POST
 from django.utils.translation import gettext_lazy as _
 from frontend.views.cart.cart import get_or_create_cart
 from dashboard.models.country import wilaya
+from dashboard.models.notifications import Notifications
+from django.contrib.auth import get_user_model
+
+admin = get_user_model().objects.get(username='admin')
 
 @require_POST
 def save_shipping_details(request):
@@ -52,7 +56,11 @@ def save_shipping_details(request):
 
         # Clear the cart after creating the order
         cart.items.all().delete()
-
+        Notifications.objects.create(
+            user=admin,
+            title=_('New Order'),
+            text=_('Order #%(order_id)s has been placed.') % {'order_id': order.id}
+        )
         return JsonResponse({
             'success': True,
             'message': _('Shipping details saved successfully.'),

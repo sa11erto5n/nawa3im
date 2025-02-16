@@ -1,0 +1,38 @@
+{% extends 'dashboard/index.html' %}
+{% load i18n tags %}
+
+{% block dash %}
+<div class="order-details card">
+    <div class="card-body">
+        <h1 class="card-title">{% trans "Order" %} #{{ order.id }}</h1>
+        <p class="card-text"><strong>{% trans "Status" %}:</strong> {{ order.get_status_display }}</p>
+        <p class="card-text"><strong>{% trans "Total Price" %}:</strong> {{ order.total_price }}</p>
+        <p class="card-text"><strong>{% trans "Created At" %}:</strong> {{ order.created_at }}</p>
+        
+        <h2 class="card-subtitle mb-2 mt-4">{% trans "Shipping Details" %}</h2>
+        <p class="card-text"><strong>{% trans "Name" %}:</strong> {{ order.full_name }}</p>
+        <p class="card-text"><strong>{% trans "Phone" %}:</strong> {{ order.phone_number }}</p>
+        <p class="card-text"><strong>{% trans "Address" %}:</strong> {{ commune.name_ar }}, {{ order.wilaya|trans:"name" }}, {{ order.country }}</p>
+        
+        <h2 class="card-subtitle mb-2 mt-4">{% trans "Items" %}</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>{% trans "Product" %}</th>
+                    <th>{% trans "Quantity" %}</th>
+                    <th>{% trans "Price" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items.all %}
+                <tr>
+                    <td>{{ item.product|trans:'name' }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock dash %} 

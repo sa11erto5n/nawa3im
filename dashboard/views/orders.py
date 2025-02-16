@@ -2,7 +2,14 @@ from frontend.models.order import Order, OrderItem
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView
+from frontend.models.order import Order
+from django.contrib.auth.decorators import login_required
+from dashboard.models.country import Commune
 
+
+@login_required
 def List(request):
     orders = Order.objects.all().order_by('-created_at').select_related(
         'customer', 'wilaya'
@@ -11,6 +18,7 @@ def List(request):
         'orders': orders,
     })
 
+@login_required
 def ShipOrder(request, pk):
     if request.method == 'POST':
         order = get_object_or_404(Order, pk=pk)
@@ -30,6 +38,7 @@ def ShipOrder(request, pk):
         'error': _('Invalid request method!')
     })
 
+@login_required
 def UpdateOrderStatus(request, pk):
     """New view to handle all status updates"""
     if request.method == 'POST':
@@ -51,3 +60,17 @@ def UpdateOrderStatus(request, pk):
         'success': False,
         'error': _('Invalid request method!')
     })
+
+@login_required
+def order_detail(request, pk):
+    order = get_object_or_404(
+        Order,
+        pk=pk,
+        customer__user=request.user  # Ensure user can only view their own orders
+    )
+    commune = Commune.objects.get(pk=order.city)
+    context = {
+        'order': order,
+        'commune':commune
+    }
+    return render(request, 'order/details.html', context=context)
