@@ -91,7 +91,7 @@ msgstr "يخلق"
 
 #: dashboard/templates/blog/list.html:85
 msgid "Blog Posts"
-msgstr "منشورات المدونة"
+msgstr "المقالات"
 
 #: dashboard/templates/blog/list.html:102
 #: dashboard/templates/categories/list.html:84
@@ -121,11 +121,11 @@ msgstr "يمسح"
 #, fuzzy
 #| msgid "No products at the moment"
 msgid "No Blog Posts at the moment"
-msgstr "لا توجد منتجات في الوقت الحالي"
+msgstr "لا توجد مقالات في الوقت الحالي"
 
 #: dashboard/templates/categories/list.html:6
 msgid "Create a category"
-msgstr "إنشاء فئة"
+msgstr "إنشاء تصنيف"
 
 #: dashboard/templates/categories/list.html:43
 msgid "Category Name (Arabic)"
@@ -152,7 +152,7 @@ msgstr "يخلق"
 
 #: dashboard/templates/categories/list.html:67
 msgid "Categories List"
-msgstr "قائمة الفئات"
+msgstr "قائمة التصنيفات"
 
 #: dashboard/templates/categories/list.html:78
 #: dashboard/templates/testimony/list.html:78
@@ -167,7 +167,7 @@ msgstr "وصف"
 #: dashboard/templates/products/create.html:127
 #: dashboard/templates/shipping/list.html:90
 msgid "No Categories at the moment"
-msgstr "لا توجد فئات في الوقت الحالي"
+msgstr "لا توجد تصنيفات في الوقت الحالي"
 
 #: dashboard/templates/dashboard/home.html:6
 #: dashboard/templates/dashboard/home.html:10 frontend/models/order.py:39
@@ -258,7 +258,7 @@ msgstr "شيبينغز"
 #: dashboard/templates/dashboard/index.html:55
 #: dashboard/templates/testimony/list.html:67
 msgid "Testemonies"
-msgstr "شهادات"
+msgstr "الشهادات"
 
 #: dashboard/templates/dashboard/index.html:59
 msgid "Blogs"
@@ -283,7 +283,7 @@ msgstr "تسجيل الخروج"
 #: dashboard/templates/products/create.html:6
 #: dashboard/templates/products/list.html:7
 msgid "Product List"
-msgstr "قائمة المنتج"
+msgstr "قائمة المنتجات"
 
 #: dashboard/templates/products/create.html:21
 msgid "Product Image"
@@ -326,13 +326,13 @@ msgstr "مخزون"
 #: frontend/templates/frontend/market/category.html:68
 #: frontend/templates/frontend/market/home.html:78
 msgid "No products at the moment"
-msgstr "لا توجد منتجات في الوقت الحالي"
+msgstr "لا توجد منتجات متاحة حالياً"
 
 #: dashboard/templates/shipping/list.html:6
 #: dashboard/templates/shipping/list.html:43
 #: frontend/templates/cart/cart.html:119
 msgid "Shipping Details"
-msgstr "تفاصيل الشحن"
+msgstr "تفاصيل التوصيل"
 
 #: dashboard/templates/shipping/list.html:22
 #: dashboard/templates/shipping/list.html:54
@@ -378,7 +378,7 @@ msgstr "محتوى"
 
 #: dashboard/templates/testimony/list.html:120
 msgid "No testimonies at the moment"
-msgstr "لا توجد شهادات في الوقت الحالي"
+msgstr "لا توجد شهادات متاحة حالياً"
 
 #: dashboard/templates/user/edit.html:21
 msgid "Profile Picture"

@@ -37,9 +37,9 @@ def create(request):
             # Create a new Category object
             category = Category(image=image, name_ar=name_ar, description_ar=description_ar , name_fr=name_fr, description_fr=description_fr)
             category.save()
-            return JsonResponse({'success': True, 'message': 'Category created successfully!','redirect_url': reverse_lazy('dash:categoriesList')})
+            return JsonResponse({'success': True, 'message': _('Category created successfully!'),'redirect_url': reverse_lazy('dash:categoriesList')})
     else:
-        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
+        return JsonResponse({'success': False, 'error': _('Invalid request method')}, status=405)
 class Delete(mixins.AdminOnlyMixin,BaseDeleteView):
     model = Category
 

@@ -174,7 +174,7 @@ msgstr "Pas de catégories pour le moment"
 #: frontend/templates/frontend/index.html:24
 #: frontend/templates/frontend/index.html:149
 msgid "Home"
-msgstr "Maison"
+msgstr "Accueil"
 
 #: dashboard/templates/dashboard/home.html:23
 msgid "Total Orders"
@@ -192,7 +192,7 @@ msgstr "Produits totaux"
 #: dashboard/templates/dashboard/index.html:47
 #: dashboard/templates/order/order.html:6
 msgid "Orders"
-msgstr "Ordres"
+msgstr "Commandes"
 
 #: dashboard/templates/dashboard/home.html:91
 #: dashboard/templates/order/order.html:16
@@ -218,7 +218,7 @@ msgstr "Mode de paiement"
 #: dashboard/templates/order/order.html:28 frontend/models/cart.py:10
 #: frontend/models/order.py:14
 msgid "Created At"
-msgstr "Créé à"
+msgstr "Créé le"
 
 #: dashboard/templates/dashboard/home.html:118
 #: dashboard/templates/order/order.html:43
@@ -230,7 +230,7 @@ msgstr "Créé à"
 #: frontend/templates/frontend/market/category.html:56
 #: frontend/templates/frontend/market/home.html:64
 msgid "DZD"
-msgstr "Dzd"
+msgstr "DZD"
 
 #: dashboard/templates/dashboard/home.html:143
 #: dashboard/templates/order/order.html:68
@@ -253,7 +253,7 @@ msgstr "Catégories"
 
 #: dashboard/templates/dashboard/index.html:51
 msgid "Shippings"
-msgstr "Shippings"
+msgstr "Expéditions"
 
 #: dashboard/templates/dashboard/index.html:55
 #: dashboard/templates/testimony/list.html:67
@@ -266,11 +266,11 @@ msgstr "Blogs"
 
 #: dashboard/templates/dashboard/index.html:108
 msgid "Mark all as read"
-msgstr "Marquez tout comme lu"
+msgstr "Tout marquer comme lu"
 
 #: dashboard/templates/dashboard/index.html:112
 msgid "No notifications at the moment"
-msgstr "Pas de notifications pour le moment"
+msgstr "Aucune notification pour le moment"
 
 #: dashboard/templates/dashboard/index.html:131
 msgid "Profile"
