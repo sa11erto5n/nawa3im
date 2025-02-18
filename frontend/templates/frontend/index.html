@@ -14,10 +14,10 @@
           content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Site Metas -->
     <link rel="icon" href="{% static "images/fevicon.png" %}" type="image/gif" />
-    <meta name="keywords" content="forniture,al-fath,edgecut" />
+    <meta name="keywords" content="alger,algeria,aiguile" />
     <meta name="description"
-          content="{% trans "your best place to get high quality furniture" %}" />
-    <meta name="author" content="{% trans "Amraoui Mohamed" %}" />
+          content="{% trans "your best place to get high quality clothes" %}" />
+    <meta name="author" content="{% trans "" %}" />
     <title>
       {% trans "Nawa3im" %} |
       {% block subtitle %}
@@ -55,7 +55,7 @@
     <!-- Custom styles for this template -->
     <link href="{% static "css/style.css" %}" rel="stylesheet" />
     <!-- Custom style-->
-    <link rel="stylesheet" href="{% static "css/custom.css" %}" />
+    <link rel="stylesheet" href="{% static "css/custom.css" %}?v={% now 'U' %}" />
 
     {% block css %}
       <!-- responsive style -->
@@ -441,11 +441,11 @@
                   </div>
                   <div class="mb-3">
                     <textarea class="form-control" rows="4" placeholder="{% trans 'Message' %}" required></textarea>
-                                                          </div>
-                                                          <div class="d-grid">
-                                                            <button class="btn btn-primary d-block ms-auto" type="submit">
-                                                              {% trans "SEND" %}
-                                        </button>
+                                                              </div>
+                                                              <div class="d-grid">
+                                                                <button class="btn btn-primary d-block ms-auto" type="submit">
+                                                                  {% trans "SEND" %}
+                                          </button>
                   </div>
                 </form>
               </div>
@@ -516,17 +516,16 @@
   </footer>
 
   <!-- Floating WhatsApp Icon -->
-  <div class="position-fixed {% if LC == 'ar' %}left-0{% else %}right-0{% endif %} bottom-0 m-1"
-       style="z-index: 1000">
-    <a href="https://wa.me/+213784818516"
-       target="_blank"
-       class="text-decoration-none">
-      <img src="{% static 'images/whatsapp-icon.png' %}"
-           alt="WhatsApp Icon"
-           style="width: 85px;
-                  height: 85px" />
-    </a>
-  </div>
+
+  <a href="https://wa.me/+213784818516"
+     target="_blank"
+     class="text-decoration-none" id='whatsapp_icon'>
+    <img src="{% static 'images/whatsapp-icon.png' %}"
+         alt="WhatsApp Icon"
+         style="width: 85px;
+                height: 85px" />
+  </a>
+
   <!-- footer section -->
 {% endblock footer %}
 
