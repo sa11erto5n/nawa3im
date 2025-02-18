@@ -37,7 +37,7 @@
                                             </span>
 
                                             <!-- Product Price -->
-                                            <span class="col-lg-3 col-md-12 item_price fw-bold">
+                                            <span class="col-lg-3 col-md-12 item_price fw-bold" data-price="{{ item.product.price }}">
                                                 {{ item.product.price }} {% trans "DZD" %}
                                             </span>
 
@@ -88,22 +88,22 @@
                                     <!-- Total Number of Products -->
                                     <div class="d-flex justify-content-between mb-2">
                                         <span class="text-muted">{% trans "Total Products:" %}</span>
-                                        <span id='products_count'>5</span> <!-- Replace with dynamic value -->
+                                        <span id='products_count'>{{ cart_items|length }}</span>
                                     </div>
                                     <!-- Subtotal -->
                                     <div class="d-flex justify-content-between mb-2">
                                         <span class="text-muted">{% trans "Subtotal:" %}</span>
-                                        <span id='subtotal_count'>0 {% trans "DZD" %}</span> <!-- Replace with dynamic value -->
+                                        <span id='subtotal_count'>0 {% trans "DZD" %}</span>
                                     </div>
                                     <!-- Shipping Cost -->
                                     <div class="d-flex justify-content-between mb-2">
                                         <span class="text-muted">{% trans "Shipping:" %}</span>
-                                        <span id='shipping_price'>0 {% trans "DZD" %}</span> <!-- Replace with dynamic value -->
+                                        <span id='shipping_price'>0 {% trans "DZD" %}</span>
                                     </div>
                                     <!-- Total Amount -->
                                     <div class="d-flex justify-content-between mt-3 pt-3 border-top">
                                         <strong>{% trans "Total Amount:" %}</strong>
-                                        <strong id='total_amount'>0 {% trans "DZD" %} </strong> <!-- Replace with dynamic value -->
+                                        <strong id='total_amount'>0 {% trans "DZD" %}</strong>
                                     </div>
                                 </div>
                             </div>

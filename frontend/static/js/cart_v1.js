@@ -22,13 +22,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 quantityInput.value = 1; // Update the input field
             }
 
-            const price = parseFloat(item.querySelector('.item_price').textContent
+            const price = parseFloat(item.querySelectorAll('.item_price').textContent
                 .replace(' DZD', '')
                 .replace(',', '.'));
 
             // Update total products and subtotal
             totalProducts += quantity;
             subtotal += quantity * price;
+            console.log('subtotal');
+            
         });
 
         // Calculate total amount
