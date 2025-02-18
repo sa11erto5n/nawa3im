@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-16 20:13+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2025-02-18 20:07+0000\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Translated-Using: django-rosetta 0.10.1\n"
 
 #: dashboard/models/product.py:15
 msgid "Category"
@@ -722,7 +723,7 @@ msgstr "عمروي محمد"
 #: frontend/templates/frontend/index.html:75
 #: frontend/templates/frontend/index.html:480
 msgid "Nawa3im"
-msgstr "Nawa3im"
+msgstr "نواعم"
 
 #: frontend/templates/frontend/index.html:110
 msgid "Search products..."
@@ -803,7 +804,7 @@ msgstr "استكشف اختيارات الأزياء المنسقة"
 
 #: frontend/templates/frontend/index.html:267
 msgid "Explore"
-msgstr "يستكشف"
+msgstr "إستكشف"
 
 #: frontend/templates/frontend/index.html:286
 msgid "Discover our latest additions"

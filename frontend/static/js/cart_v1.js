@@ -4,8 +4,8 @@ langCode = document.documentElement.getAttribute('data-lang')
 document.addEventListener('DOMContentLoaded', function () {
     // Function to update the cart summary
     function updateCartSummary(shipping = 0) {
-        // Update selector to match browser version
-        const cartItems = document.querySelectorAll('.d-flex.align-items-center.justify-content-between.mb-3');
+        const cartItems = document.querySelectorAll('.cart_item');
+        console.log('Function called, cart items found:', cartItems.length);
 
         let totalProducts = 0;
         let subtotal = 0;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 quantityInput.value = 1; // Update the input field
             }
 
-            const price = parseFloat(item.querySelectorAll('.item_price').textContent
+            const price = parseFloat(item.querySelector('.item_price').textContent
                 .replace(' DZD', '')
                 .replace(',', '.'));
 
@@ -89,6 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('wilaya').addEventListener('change', async function () {
         const citySelect = document.getElementById('city');
         const wilayaCode = this.value;
+        
+        // Fix: Clear existing options before adding new ones
+        citySelect.innerHTML = '<option value="">Select City</option>';
 
         if (wilayaCode) {
             try {
@@ -113,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     citySelect.appendChild(option);
                 });
 
-                // Fetch shipping price for selected wilaya
+                // Fetch shipping price for selected province
                 const shippingResponse = await fetch(`/dashboard/shipping/getShippingPrice/${wilayaCode}/`);
 
                 if (!shippingResponse.ok) {
