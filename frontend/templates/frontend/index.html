@@ -217,7 +217,7 @@
       <section class="hero-section vh-100">
         <div class="container h-100">
           <div class="row h-100 align-items-center">
-            <div class="col-lg-12 col-md-6 text-center text-md-start">
+            <div class="col-12 col-md-6 text-center text-md-start">
               <h1 class="display-3 fw-bold mb-4 text-teal">
                 {% trans "Elevate Your Style" %}
               </h1>
@@ -229,7 +229,7 @@
                 {% trans "Order it now" %}
               </a>
             </div>
-            <div class="col-lg-12 col-md-6 mt-4 mt-md-0">
+            <div class="col-12 col-md-6 mt-4 mt-md-0">
               <img src="{% static 'images/store.jpg' %}"
                    alt="Fashion"
                    class="img-fluid rounded shadow" />
@@ -251,7 +251,7 @@
           </div>
           <div class="row g-4">
             {% for category in categories %}
-              <div class="col-md-12 col-sm-6 col-md-4">
+              <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 border-0 shadow">
                   <img src={{ category.image.url }} class="card-img-top ratio" style="aspect-ratio:1/1" alt={{ category|trans:'name' }} />
                   <div class="card-body text-center">
@@ -281,7 +281,7 @@
           </div>
           <div class="row g-4">
             {% for product in products %}
-              <div class="col-lg-12 col-sm-6 col-md-6">
+              <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 border-0 shadow">
                   <img src="{{ product.image.url }}"
                        class="card-img-top"
@@ -338,7 +338,7 @@
           </div>
           <div class="row g-4">
             {% for blog in blogs %}
-              <div class="col-md-4">
+              <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 border-0 shadow">
                   <img src={{ blog.image.url }} class="card-img-top" alt={{ blog|trans:"title" }} />
                   <div class="card-body">
@@ -464,7 +464,7 @@
     <div class="container">
       <div class="row align-items-center">
         <!-- Copyright Text -->
-        <div class="col-md-6 text-center text-light text-md-start mb-3 mb-md-0">
+        <div class="col-md-6 text-center text-light text-md-start mb-md-0">
           <p class="mb-0 text-light">
             &copy; <span class='text-light' id="displayYear">{{ current_year }}</span> {% trans "All Rights Reserved By" %}
             <a href="{% url 'frontend:home' %}"
