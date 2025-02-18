@@ -214,27 +214,22 @@
 
     {% block content %}
       <!-- Hero Section -->
-      <section class="hero-section vh-100" data-aos="fade-up">
+      <section class="hero-section vh-100">
         <div class="container h-100">
           <div class="row h-100 align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-              <h1 class="display-3 fw-bold mb-4 text-teal" data-aos="fade-right">
+            <div class="col-lg-12 col-md-6 text-center text-md-start">
+              <h1 class="display-3 fw-bold mb-4 text-teal">
                 {% trans "Elevate Your Style" %}
               </h1>
-              <p class="lead mb-4" data-aos="fade-right" data-aos-delay="200">
+              <p class="lead mb-4">
                 {% trans "Discover the latest trends in fashion for every occasion" %}
               </p>
               <a href="{% url 'frontend:market' %}"
-                 target="_blank"
-                 class="btn btn-dark btn-lg"
-                 data-aos="fade-up"
-                 data-aos-delay="400">
+                 class="btn btn-dark btn-lg d-block d-md-inline-block">
                 {% trans "Order it now" %}
               </a>
             </div>
-            <div class="col-md-6 d-none d-md-block"
-                 data-aos="fade-left"
-                 data-aos-delay="600">
+            <div class="col-lg-12 col-md-6 mt-4 mt-md-0">
               <img src="{% static 'images/store.jpg' %}"
                    alt="Fashion"
                    class="img-fluid rounded shadow" />
@@ -244,7 +239,7 @@
       </section>
 
       <!-- Collections Section -->
-      <section id="collections" class="py-5" data-aos="fade-up">
+      <section id="collections" class="py-5">
         <div class="container">
           <div class="text-center mb-5">
             <h2 class="display-5 mb-3 text-teal">
@@ -256,7 +251,7 @@
           </div>
           <div class="row g-4">
             {% for category in categories %}
-              <div class="col-md-4" data-aos="fade-up">
+              <div class="col-md-12 col-sm-6 col-md-4">
                 <div class="card h-100 border-0 shadow">
                   <img src={{ category.image.url }} class="card-img-top ratio" style="aspect-ratio:1/1" alt={{ category|trans:'name' }} />
                   <div class="card-body text-center">
@@ -269,14 +264,12 @@
                 </div>
               </div>
             {% endfor %}
-
-
           </div>
         </div>
       </section>
 
       <!-- New Arrivals Section -->
-      <section class="py-5 bg-light" data-aos="fade-up">
+      <section class="py-5 bg-light">
         <div class="container">
           <div class="text-center mb-5">
             <h2 class="display-5 mb-3 text-teal">
@@ -288,7 +281,7 @@
           </div>
           <div class="row g-4">
             {% for product in products %}
-              <div class="col-md-6 col-lg-3" data-aos="fade-up">
+              <div class="col-lg-12 col-sm-6 col-md-6">
                 <div class="card h-100 border-0 shadow">
                   <img src="{{ product.image.url }}"
                        class="card-img-top"
@@ -311,15 +304,15 @@
       </section>
 
       <!-- About Section -->
-      <section id="about" class="py-5" data-aos="fade-up">
+      <section id="about" class="py-5">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-md-6 order-md-2" data-aos="fade-left">
+            <div class="col-md-6 order-md-2">
               <img src="{% static 'images/bags.png' %}"
                    alt="About Us"
                    class="img-fluid w-100" />
             </div>
-            <div class="col-md-6 order-md-1" data-aos="fade-right">
+            <div class="col-md-6 order-md-1">
               <h2 class="display-5 mb-4 text-teal">
                 {% trans "About Our Brand" %}
               </h2>
@@ -333,7 +326,7 @@
       </section>
 
       <!-- Blog Section -->
-      <section id="blog" class="py-5 bg-light" data-aos="fade-up">
+      <section id="blog" class="py-5 bg-light">
         <div class="container">
           <div class="text-center mb-5">
             <h2 class="display-5 mb-3 text-teal">
@@ -345,7 +338,7 @@
           </div>
           <div class="row g-4">
             {% for blog in blogs %}
-              <div class="col-md-4" data-aos="fade-up">
+              <div class="col-md-4">
                 <div class="card h-100 border-0 shadow">
                   <img src={{ blog.image.url }} class="card-img-top" alt={{ blog|trans:"title" }} />
                   <div class="card-body">
@@ -362,7 +355,7 @@
       </section>
 
       <!-- Testimonials Section -->
-      <section id="testimonials" class="py-5 bg-light" data-aos="fade-up">
+      <section id="testimonials" class="py-5 bg-light">
         <div class="container">
           <div class="text-center mb-5">
             <h2 class="display-5 mb-3 text-teal">
@@ -373,8 +366,7 @@
             </p>
           </div>
           <div id="testimonialCarousel"
-               class="carousel slide"
-               data-bs-ride="carousel">
+               class="carousel slide">
             <div class="carousel-inner">
               {% for object in testemonies %}
                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -441,11 +433,11 @@
                   </div>
                   <div class="mb-3">
                     <textarea class="form-control" rows="4" placeholder="{% trans 'Message' %}" required></textarea>
-                                                              </div>
-                                                              <div class="d-grid">
-                                                                <button class="btn btn-primary d-block ms-auto" type="submit">
-                                                                  {% trans "SEND" %}
-                                          </button>
+                                                                      </div>
+                                                                      <div class="d-grid">
+                                                                        <button class="btn btn-primary d-block ms-auto" type="submit">
+                                                                          {% trans "SEND" %}
+                                              </button>
                   </div>
                 </form>
               </div>
@@ -519,11 +511,12 @@
 
   <a href="https://wa.me/+213784818516"
      target="_blank"
-     class="text-decoration-none" id='whatsapp_icon'>
+     class="text-decoration-none"
+     id='whatsapp_icon'
+     style="width: 60px; height: 60px;">
     <img src="{% static 'images/whatsapp-icon.png' %}"
          alt="WhatsApp Icon"
-         style="width: 85px;
-                height: 85px" />
+         class="img-fluid" />
   </a>
 
   <!-- footer section -->
