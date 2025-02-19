@@ -129,7 +129,7 @@ tinymce.init({
     quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
     noneditable_class: 'mceNonEditable',
     toolbar_mode: 'sliding',
-    contextmenu: 'link image table',
+    contextmenu: 'link image table copy paste',
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
     setup: function (editor) {
         editor.on('change', function () {
