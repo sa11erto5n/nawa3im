@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import auth, customer, dashbaord, notifications, user, products, categories,orders, shipping, testimony, blog, country
+from .views import auth, customer, dashbaord, notifications, user, products, categories,orders, shipping, testimony, blog, country,ai, upload
 app_name = 'dash'
 
 urlpatterns = [
@@ -41,7 +41,11 @@ urlpatterns = [
     # country
     path('api/wilayas/<int:wilaya_code>/cities/', country.get_cities, name='get_cities'),
     
-
+    # AI 
+    path('chat/', ai.chat, name='chat_with_ai'),
+    path('analyze-image/', ai.analyze_image, name='analyze_image'),
+    # upload 
+    path('upload-image/', upload.upload_image, name='upload_image'),
 
 ]
 

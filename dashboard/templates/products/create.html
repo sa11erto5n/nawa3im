@@ -32,7 +32,7 @@
                                 id="id_thumbnail"
                                 name="thumbnail"
                                 accept="image/*"
-                                onchange="previewImage(event)" />
+                                onchange="handleImageUpload(event)" />
                     </div>
                     <div class="d-flex flex-column my-2 flex-grow-1">
 
@@ -128,3 +128,8 @@
           </h5>
      {% endif %}
 {% endblock dash %}
+
+{% block js %}
+     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+     <script src={% static "js/project.js" %}></script>
+{% endblock js %}

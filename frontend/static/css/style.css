@@ -1,7 +1,7 @@
-:root 
-{
-  --bs-teal : #6bb7be !important;
+:root {
+  --bs-teal: #6bb7be !important;
 }
+
 /* fonts import */
 @import url("../fonts/octin_sports_rg.ttf");
 
@@ -19,7 +19,6 @@ body {
 .layout_padding2 {
   padding: 45px 0;
 }
-
 .layout_padding2-top {
   padding-top: 45px;
 }
@@ -900,4 +899,25 @@ a:focus {
 .link-teal:hover {
   color: #5aa2a7;
   text-decoration: underline;
+}
+
+/* header */
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: transparent !important;
+  z-index: 999;
+}
+
+header i {
+  /* color:  rgb(136, 136, 136) !important; */
+  color:  var(--bs-gray) !important;
+}
+#home 
+{
+  background: url('../images/store2.jpg');
+  background-repeat:none ;
+  background-size: cover;
 }

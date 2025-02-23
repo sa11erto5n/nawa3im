@@ -31,9 +31,6 @@ body.ltr i {
     min-height: max-content !important;
 }
 
-nav {
-    box-shadow: 0px 2px 0rem rgba(0, 0, 0, .075) !important;
-}
 
 nav .navbar-toggler {
     width: unset !important;
@@ -104,7 +101,7 @@ nav .navbar-toggler span {
     margin: 2px !important;
     height: 3px !important;
     width: 100% !important;
-    background-color: var(--bs-dark) !important;
+    background-color:  rgb(136, 136, 136) !important;
     display: block;
     border-radius: 5px !important;
 
@@ -257,9 +254,11 @@ nav .navbar-toggler span:nth-child(3) {
     bottom: 0;
     z-index: 999;
 }
+
 body.ltr #whatsapp_icon {
     left: 0;
 }
+
 body.rtl #whatsapp_icon {
     right: 0;
 

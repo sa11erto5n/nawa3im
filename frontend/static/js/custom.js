@@ -309,3 +309,16 @@ document.addEventListener('click', function (event) {
         searchBox.style.display = 'none';
     }
 });
+
+
+// Add scroll event listener for header background change
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) { // Change 50 to the scroll threshold you want
+        header.classList.add('bg-light');
+        header.classList.remove('bg-transparent');
+    } else {
+        header.classList.remove('bg-light');
+        header.classList.add('bg-transparent');
+    }
+});

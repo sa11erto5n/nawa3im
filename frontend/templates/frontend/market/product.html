@@ -14,7 +14,7 @@
 {% endblock slider %}
 
 {% block content %}
-    <section class="furniture_section long_section category_section"
+    <section class="furniture_section long_section category_section mt-5"
              id='furniture'>
         {% if product %}
             <div class="container my-3">
@@ -31,17 +31,16 @@
                     <div class="col-lg-8 col-md-12">
                         <div class="bg-light p-2 rounded">
                             <div class="detail-box">
-                                <h3 class='mb-2 text-teal'>
+                                <h2 class='mb-2 text-secondary'>
                                     {{ product|trans:"name" }}
-                                </h3>
+                                </h2>
                                 <div class="price_box d-flex ">
                                     <div class="d-flex flex-column w-100">
-                                        <strong>{% trans "Product Details" %}</strong>
                                         <p>
                                             {{ product|trans:"description"|safe }}
                                         </p>
                                         <div class="d-flex justify-content-between">
-                                            <button class="btn w-100 btn-teal add-to-cart" data-product-id="{{ product.pk }}">
+                                            <button class="btn w-100 btn-secondary  add-to-cart" data-product-id="{{ product.pk }}" style='font-size:16px'>
                                                 {% trans "Add to cart" %}
                                             </button>        
                                         </div>
