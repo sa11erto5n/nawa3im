@@ -26,11 +26,11 @@ futures==3.0.5
 googletrans==4.0.0rc1
 goslate==1.5.4
 gunicorn==23.0.0
-h11==0.14.0
+h11
 h2==3.2.0
 hpack==3.0.0
 hstspreload==2025.1.1
-httpcore==0.9.*
+httpcore==
 httpx==0.13.3
 hyperframe==5.2.0
 idna==2.10
