@@ -11,6 +11,7 @@ from dashboard.models.country import wilaya
 import uuid
 from frontend.models.order import Order, OrderItem
 from django.db import transaction
+from django.views.decorators.csrf import csrf_exempt
 
 def get_or_create_cart(request):
     """
@@ -52,30 +53,40 @@ def add_to_cart(request, product_id):
         'message': _(f'{quantity} x {product_name} added to cart.'),
     })
 
-@require_POST
-def update_cart_item(request, cart_item_id):
-    """
-    Update the quantity of a specific cart item.
-    """
-    cart_item = get_object_or_404(CartItem, id=cart_item_id)
-    quantity = int(request.POST.get('quantity', 1))
-
-    # Get product name based on current language
-    product_name = str(cart_item.product)
-
-    if quantity > 0:
-        cart_item.quantity = quantity
-        cart_item.save()
-        message = f'Updated {product_name} quantity to {quantity}.'
+def update_cart_item(request, item_id):
+    if request.method == 'POST':
+        try:
+            # Get the cart directly instead of using request.cart
+            item = CartItem.objects.get(pk=item_id)
+            quantity = int(request.POST.get('quantity', 1))
+            if quantity > 0:
+                item.quantity = quantity
+                item.save()
+                
+                # Calculate cart totals
+                cart = item.cart
+                cart_items = cart.items.all()
+                total_items = sum(item.quantity for item in cart_items)
+                subtotal = sum(item.product.price * item.quantity for item in cart_items)
+                shipping_cost = 0  # You can add shipping calculation logic here if needed
+                total_amount = subtotal + shipping_cost
+                
+                return JsonResponse({
+                    'success': True,
+                    'total_items': total_items,
+                    'subtotal': subtotal,
+                    'shipping_cost': shipping_cost,
+                    'total_amount': total_amount
+                })
+            else:
+                return JsonResponse({'success': False, 'error': 'Invalid quantity'}, status=400)
+        except CartItem.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Item not found'}, status=404)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
     else:
-        cart_item.delete()
-        message = f'{product_name} removed from cart.'
-
-    return JsonResponse({
-        'success': True,
-        'message': message,
-    })
-
+        return JsonResponse({'success': False, 'error': 'Invalid method'}, status=500)
+        
 @require_POST
 def remove_from_cart(request, cart_item_id):
     """

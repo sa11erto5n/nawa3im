@@ -28,9 +28,7 @@ class CartItem(models.Model):
     )
     quantity = models.PositiveIntegerField(_("Quantity"),default=1)
 
-    def __str__(self):
-        
-        return f"{self.quantity} x {self.product.name} in {_('Cart')} {self.cart.customer.user.username}"
+
 
     @property
     def item_total(self):

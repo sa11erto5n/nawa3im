@@ -14,7 +14,7 @@
 {% endblock slider %}
 
 {% block content %}
-    <div class="long_section my-2">
+    <div class="long_section my-5">
         <div class="container-fluid">
             <div class="row g-3">
                 <div class="col-lg-6 col-md-12">
@@ -37,7 +37,8 @@
                                             </span>
 
                                             <!-- Product Price -->
-                                            <span class="col-lg-3 col-md-12 item_price fw-bold" data-price="{{ item.product.price }}">
+                                            <span class="col-lg-3 col-md-12 item_price fw-bold"
+                                                  data-price="{{ item.product.price }}">
                                                 {{ item.product.price }} {% trans "DZD" %}
                                             </span>
 
@@ -48,9 +49,14 @@
                                                     <div class="col-lg-6">
                                                         <input type="number"
                                                                name="quantity"
-                                                               id="quantity"
+                                                               id="quantity_{{ item.pk }}"
                                                                value="{{ item.quantity }}"
-                                                               class="form-control mb-2" />
+                                                               class="form-control mb-2 quantity-input"
+                                                               data-item-id="{{ item.pk }}"
+                                                               data-update-url="{% url 'frontend:update_cart_item' item.pk %}"
+                                                               data-csrf-token="{{ csrf_token }}"
+                                                               min="1"
+                                                               onchange="updateCartItem(this)" />
                                                     </div>
 
                                                     <!-- Remove Button -->

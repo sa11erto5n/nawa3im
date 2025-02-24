@@ -91,7 +91,7 @@
                             {% for category in categories %}
                                 <tr>
                                     <td>
-                                        <img src={{ category.image.url }} width='48' height='48' class='rounded'>
+                                        <img src={{ category.image.url }} width='48' height='48' class='rounded' />
                                     </td>
                                     <td>
                                         {{ category|trans:'name' }}
@@ -103,11 +103,15 @@
                                         {{ category.created_at }}
                                     </td>
                                     <td>
-                                        <button class="delete-button btn btn-sm btn-danger"
+                                        <button class="delete-button btn btn-danger"
                                                 data-delete-url="{% url 'dash:category-delete' category.pk %}"
                                                 data-csrf-token="{{ csrf_token }}">
-                                            {% trans "Delete" %}
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+
                                         </button>
+                                        <a href="{% url "dash:category-edit" category.pk %}" class='btn btn-success'>
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             {% endfor %}

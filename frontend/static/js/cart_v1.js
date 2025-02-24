@@ -134,3 +134,41 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+
+
+function updateCartItem(input) {
+    const itemId = input.dataset.itemId;
+    const quantity = input.value;
+    const updateUrl = input.dataset.updateUrl;
+    const csrfToken = input.dataset.csrfToken;
+
+    // Create form data instead of JSON
+    const formData = new FormData();
+    formData.append('quantity', quantity);
+
+    fetch(updateUrl, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update the cart totals
+            document.getElementById('products_count').textContent = data.total_items;
+            document.getElementById('subtotal_count').textContent = data.subtotal + ' DZD';
+            document.getElementById('shipping_price').textContent = data.shipping_cost + ' DZD';
+            document.getElementById('total_amount').textContent = data.total_amount + ' DZD';
+        } else {
+            alert(data.error || 'Failed to update cart item');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while updating the cart');
+    });
+}

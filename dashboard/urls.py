@@ -13,10 +13,12 @@ urlpatterns = [
     # Products
     path('products/',products.List,name='productsList'),
     path('products/create/',products.create_product,name='create-product'),
+    path('products/edit/<int:pk>',products.edit_product,name='edit-product'),
     path('products/delete/<int:pk>/',products.Delete.as_view(),name='product-delete'),
     # category
     path('categories/',categories.List,name='categoriesList'),
     path('categories/create/',categories.create,name='category-create'),
+    path('categories/edit/<int:pk>',categories.edit,name='category-edit'),
     path('categories/delete/<int:pk>/',categories.Delete.as_view(),name='category-delete'),
     # Shipping
     path('shipping/',shipping.List,name='shippingList'),
