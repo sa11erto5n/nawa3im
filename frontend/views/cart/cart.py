@@ -53,40 +53,39 @@ def add_to_cart(request, product_id):
         'message': _(f'{quantity} x {product_name} added to cart.'),
     })
 
+@require_POST
 def update_cart_item(request, item_id):
-    if request.method == 'POST':
-        try:
-            # Get the cart directly instead of using request.cart
-            item = CartItem.objects.get(pk=item_id)
-            quantity = int(request.POST.get('quantity', 1))
-            if quantity > 0:
-                item.quantity = quantity
-                item.save()
-                
-                # Calculate cart totals
-                cart = item.cart
-                cart_items = cart.items.all()
-                total_items = sum(item.quantity for item in cart_items)
-                subtotal = sum(item.product.price * item.quantity for item in cart_items)
-                shipping_cost = 0  # You can add shipping calculation logic here if needed
-                total_amount = subtotal + shipping_cost
-                
-                return JsonResponse({
-                    'success': True,
-                    'total_items': total_items,
-                    'subtotal': subtotal,
-                    'shipping_cost': shipping_cost,
-                    'total_amount': total_amount
-                })
-            else:
-                return JsonResponse({'success': False, 'error': 'Invalid quantity'}, status=400)
-        except CartItem.DoesNotExist:
-            return JsonResponse({'success': False, 'error': 'Item not found'}, status=404)
-        except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)}, status=500)
-    else:
-        return JsonResponse({'success': False, 'error': 'Invalid method'}, status=500)
+    try:
+        cart = get_or_create_cart(request)
+        cart_item = get_object_or_404(CartItem, id=item_id, cart=cart)
+        action = request.POST.get('action')
         
+        print(f"Received action: {action}")  # Debugging
+        
+        if action == 'increase':
+            cart_item.quantity += 1
+            print(f"Increased quantity to: {cart_item.quantity}")  # Debugging
+        elif action == 'decrease' and cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            print(f"Decreased quantity to: {cart_item.quantity}")  # Debugging
+            
+        cart_item.save()
+        
+        # Recalculate totals
+        cart_items = cart.items.all()
+        subtotal = sum(item.product.price * item.quantity for item in cart_items)
+        total = subtotal  # Add shipping if needed
+        
+        return JsonResponse({
+            'success': True,
+            'new_quantity': cart_item.quantity,
+            'cart_total': total,
+            'subtotal': subtotal
+        })
+    except Exception as e:
+        print(f"Error: {str(e)}")  # Debugging
+        return JsonResponse({'success': False, 'message': str(e)}, status=500)
+            
 @require_POST
 def remove_from_cart(request, cart_item_id):
     """

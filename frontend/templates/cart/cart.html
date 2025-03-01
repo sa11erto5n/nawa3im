@@ -45,18 +45,16 @@
                                             <!-- Quantity and Remove Button -->
                                             <div class="col-lg-6">
                                                 <div class="row">
-                                                    <!-- Quantity Input -->
+                                                    <!-- Quantity Control -->
                                                     <div class="col-lg-6">
-                                                        <input type="number"
-                                                               name="quantity"
-                                                               id="quantity_{{ item.pk }}"
-                                                               value="{{ item.quantity }}"
-                                                               class="form-control mb-2 quantity-input"
-                                                               data-item-id="{{ item.pk }}"
-                                                               data-update-url="{% url 'frontend:update_cart_item' item.pk %}"
-                                                               data-csrf-token="{{ csrf_token }}"
-                                                               min="1"
-                                                               onchange="updateCartItem(this)" />
+                                                        <div class="input-group">
+
+                                                            <span class="form-control text-center quantity-display item_quantity"
+                                                                  id="quantity_{{ item.pk }}">
+                                                                {{ item.quantity }}
+                                                            </span>
+
+                                                        </div>
                                                     </div>
 
                                                     <!-- Remove Button -->
@@ -65,8 +63,11 @@
                                                                 class="btn btn-danger ms-2 delete-button"
                                                                 data-delete-url="{% url 'frontend:remove_from_cart' item.pk %}"
                                                                 data-csrf-token="{{ csrf_token }}"
-                                                                aria-label="Remove Item">
-                                                            {% trans "Remove" %}
+                                                                data-item-name="{{ item.product|trans:'name' }}"
+                                                                aria-label="Remove Item"
+                                                                onclick="confirmDelete(this)">
+                                                            <i class="bi bi-trash"></i>
+                                                            <span class="ms-1">{% trans "Remove" %}</span>
                                                         </button>
                                                     </div>
                                                 </div>

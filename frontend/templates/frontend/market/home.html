@@ -16,7 +16,7 @@
 {% endblock slider %}
 
 {% block content %}
-    <div id="market">
+    <div id="market" class='mt-5'>
         <section class="furniture_section long_section category_section"
                  id='furniture'>
             {% if categories %}
@@ -32,7 +32,7 @@
                                         {{ category|trans:"description" }}
                                     </p>
                                 </div>
-                                {% if category.products.all %}
+                                {% if category.products.all|slice:":3" %}
                                     <a href="{% url "frontend:category-details" category.pk %}"
                                        class='fs-3 text-dark'>
                                         <i class="fa fa-chevron-{% if LC == 'fr' %}right{% else %}left{% endif %}"></i>

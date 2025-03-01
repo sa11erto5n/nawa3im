@@ -11,8 +11,8 @@ from dashboard.models.blog import Blog
 
 def home(request):
     context = {}
-    context['products'] = Product.objects.all().order_by('-created_at')[:3]
-    context['categories'] = Category.objects.all().order_by('-created_at')[:3]
+    context['products'] = Product.objects.all().order_by('-created_at')[:6]
+    context['categories'] = Category.objects.all().order_by('-created_at')[:6]
     context['testemonies'] = Testimony.objects.all().order_by('-created_at')[:3]
     context['blogs'] = Blog.objects.all().order_by('-created_at')[:3]
     return render(request, 'frontend/index.html', context=context)
