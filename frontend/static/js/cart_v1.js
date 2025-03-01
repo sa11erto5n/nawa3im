@@ -46,32 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call the function to update the cart summary when the page loads
     updateCartSummary(0);
 
-    // Add event listener for remove buttons
-    document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', function () {
-            // Update to match server version
-            const deleteUrl = this.dataset.deleteUrl;
-            const csrfToken = this.dataset.csrfToken;
-
-            // Send AJAX request to remove item
-            fetch(deleteUrl, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': csrfToken,
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Remove the item from the DOM
-                        this.closest('.container-fluid').remove();
-                        updateCartSummary();
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    });
 
     // Add this code to handle wilaya change
     document.getElementById('wilaya').addEventListener('change', async function () {
